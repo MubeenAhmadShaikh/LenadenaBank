@@ -10,13 +10,35 @@
 
     <link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.html" />
 
-    <title>Sign In | AdminKit Demo</title>
+    <title>LenaDenaBank | Login</title>
 
     <link href="css/app.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
   </head>
 
   <body>
+    <?php
+        session_start();
+        include('include/connection.php');
+        $error = false;
+
+        // Teacher Login 
+
+
+          if (isset($_POST['adminlogin'])) {
+          $username = mysqli_real_escape_string($conn, $_POST['username']);
+          $password = mysqli_real_escape_string($conn, $_POST['password']);
+          $result = mysqli_query($conn, "SELECT * FROM login WHERE username ='$username' AND password = '$password' ");
+          if ($row = mysqli_fetch_array($result)) {
+            $_SESSION['username']=$username; 
+            header("Location: index.php");
+          } else {
+            $error_message = "Incorrect Email or Password!!!";
+            echo "<script>alert('wrong username or password')</script>";
+          }
+        }
+
+?>
     <main class="d-flex w-100">
       <div class="container d-flex flex-column">
         <div class="row vh-100">
@@ -39,13 +61,13 @@
                         height="132"
                       />
                     </div>
-                    <form>
+                    <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="loginform">
                       <div class="mb-3">
                         <label class="form-label">Email</label>
                         <input
                           class="form-control form-control-lg"
                           type="email"
-                          name="email"
+                          name="username"
                           placeholder="Enter your email"
                         />
                       </div>
@@ -58,7 +80,9 @@
                           placeholder="Enter your password"
                         />
                         <small>
-                          <a href="index.html">Forgot password?</a>
+                          
+                          <a href="index.html">Forgot password? </a>
+
                         </small>
                       </div>
                       <div>
@@ -74,7 +98,7 @@
                         </label>
                       </div>
                       <div class="text-center mt-3">
-                        <a href="index.html" class="btn btn-lg btn-primary">Sign in</a>
+                      <input type="submit" name="adminlogin" value="Login" class="btn btn-primary" />
                         <!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
                       </div>
                     </form>
