@@ -1,3 +1,86 @@
+<?php
+include('include/connection.php');
+error_reporting(0);
+session_start();
+if ($_SESSION['username']==false) {
+   header("Location:sign_in.php");
+}
+?>
+
+<?php 
+if (isset($_POST['add'])) {
+  $afirst_name = mysqli_real_escape_string($conn,$_POST['afirst_name']);
+  $alast_name = mysqli_real_escape_string($conn,$_POST['alast_name']);
+  $aname = $afirst_name." ".$alast_name;
+  $kyc = mysqli_real_escape_string($conn, $_POST['kyc']); 
+  $gender = mysqli_real_escape_string($conn,$_POST['gender']);
+  $f_letter_of_fname = $afirst_name[0];
+  $l_letter_of_fname = $alast_name[0];
+  echo "<script>console.log('$afirst_name,$alast_name,$aname,$kyc,$adhaar_number,$pan,$gender,$f_letter_of_fname,$l_letter_of_fname');</script>";
+  
+  if($kyc=='yes'){
+    $adhaar_number = mysqli_real_escape_string($conn,$_POST['adhaar_number']);
+    $pan_number = mysqli_real_escape_string($conn,$_POST['pan_number']);
+    $kyc = true;
+    $ins_agent="INSERT INTO agent(aname,kyc,adhaar_number,pan_number,gender) VALUES('$aname','$kyc','$adhaar_number','$pan_number','$gender')";
+
+    if(mysqli_query($conn,$ins_agent)){
+      $q1="SELECT `sr_no_agent` FROM `agent` WHERE `aname`='$aname'";
+      $get_sr=mysqli_query($conn,$q1);
+
+      if(mysqli_num_rows($get_sr)>0){
+                echo "<script>console.log('hey');</script>";
+
+        while($row = mysqli_fetch_assoc($get_sr)){
+            $sr_no_agent= $row['sr_no_agent'];
+        }
+      
+        $sr_no_agent_new=$f_letter_of_fname.$l_letter_of_fname.$sr_no_agent;
+        $ins_agent_id = "UPDATE `agent` SET `agent_id`='$sr_no_agent_new' WHERE `aname`='$aname' ";        
+        echo "<script>console.log('$ins_agent_id');</script>";
+
+        if(mysqli_query($conn,$ins_agent_id)){
+            header('Location:agents.php');
+        }
+    }
+
+    }
+
+  }
+
+  elseif($kyc=="no"){
+    $kyc = false;
+    $ins_agent="INSERT INTO agent(aname,kyc,gender) VALUES('$aname','$kyc','$gender')";
+
+    if(mysqli_query($conn,$ins_agent)){
+      $q1="SELECT `sr_no_agent` FROM `agent` WHERE `aname`='$aname'";
+      $get_sr=mysqli_query($conn,$q1);
+
+      if(mysqli_num_rows($get_sr)>0){
+                echo "<script>console.log('hey');</script>";
+
+        while($row = mysqli_fetch_assoc($get_sr)){
+            $sr_no_agent= $row['sr_no_agent'];
+        }
+      
+
+        $sr_no_agent_new=$f_letter_of_fname.$l_letter_of_fname.$sr_no_agent;
+        $ins_agent_id = "UPDATE `agent` SET `agent_id`='$sr_no_agent_new' WHERE `aname`='$aname' ";        
+        echo "<script>console.log('$ins_agent_id');</script>";
+
+        if(mysqli_query($conn,$ins_agent_id)){
+            header('Location:agents.php');
+        }
+    }
+
+    }
+
+  }
+
+    ob_end_flush();
+      }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,7 +113,7 @@
               <div class="row">
               <div class="col-12">
                 <div class="card">
-                <form class="m-5">
+                <form class="m-5" method="post" name='add'>
                   <!-- First row -->
                   <div class="row"> 
                     <div class="w-50 mb-3">
@@ -66,17 +149,17 @@
                 <div class="row"> 
                 <div class="w-50 mb-3">
                     <label  class="form-label">Adhaar Number</label>
-                    <input type="text" class="form-control" name="adhaar" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" name="adhaar_number" aria-describedby="emailHelp">
                   </div>
                   <div class="w-50 mb-3">
                     <label  class="form-label">PAN Number</label>
-                    <input type="text" class="form-control" name="pan"  aria-describedby="emailHelp">
+                    <input type="text" class="form-control" name="pan_number"  aria-describedby="emailHelp">
                   </div>
                 </div>
                 
   
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" name="add">Submit</button>
 </form>
 </div>
 </div>
@@ -93,6 +176,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     
       
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
   </body>
 </html>
