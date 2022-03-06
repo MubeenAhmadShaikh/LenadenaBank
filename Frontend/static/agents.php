@@ -1,3 +1,14 @@
+<?php
+include('include/connection.php');
+error_reporting(0);
+session_start();
+if ($_SESSION['username']==false) {
+   header("Location:sign_in.php");
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,6 +53,7 @@
 								<table class="table">
 									<thead>
 										<tr>
+											<th >Agent Id</th>
 											<th >Name</th>
 											<th >Gender</th>
 											<th >KYC Status</th>
@@ -52,29 +64,44 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Vanessa Tucker</td>
-											<td>Female</td>
-											<td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
-											<td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
-											<td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
-                      <td class="d-none d-md-table-cell">May 15, 1948</td>
-											<td class="table-action">
-												<a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-												<a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
-											</td>
-										</tr>
-										<tr>
-											<td>Vanessa Tucker</td>
-											<td>Female</td>
-											<td ><i class="align-middle text-success" data-feather="check"></i></td>
-											<td >2221 3333 2222 4444</td>
-											<td >2221 3333 2222 4444</td>
-                      <td class="d-none d-md-table-cell">May 15, 1948</td>
-											<td class="table-action">
-												<a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-												<a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
-											</td>
+										
+											<?php
+												$querry="SELECT * FROM `agent`";
+												$result=mysqli_query($conn,$querry);
+
+												if(mysqli_num_rows($result)>0)
+												{
+												  echo "<script>console.log('test1');</script>";
+												
+												while($row=mysqli_fetch_assoc($result)){
+													 echo "<script>console.log('hey');</script>";
+
+												?>	
+												<tr>
+													<td><?php echo $row['agent_id'];?></td>
+													<td><?php echo $row['aname']; ?></td>
+													<td><?php echo $row['gender']; ?></td>
+													<?php 
+														if($row['kyc']==false){?>
+															<td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
+															<td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
+															<td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
+														<?php } ?>
+														<?php 
+														if($row['kyc']==true){ ?>
+															<td ><i class="align-middle text-success" data-feather="check"></i></td>
+															<td ><?php echo $row['adhaar_number'];?></td>
+															<td ><?php echo $row['pan_number'];?></td>
+															<td ><?php echo $row['dob'];?></td>
+													<?php	} ?>
+															<td class="table-action">
+																<a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
+																<a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
+														</td>
+													
+											<?php 
+											} }
+											?>
 										</tr>
 										
 									</tbody>
