@@ -19,181 +19,14 @@
 
   <body>
     <div class="wrapper">
-      <nav id="sidebar" class="sidebar js-sidebar">
-        <div class="sidebar-content js-simplebar">
-          <a class="sidebar-brand" href="index.html">
-            <span class="align-middle">LenaDenaBank</span>
-          </a>
-
-          <ul class="sidebar-nav">
-            <!-- Nav item with sub dropdown menu -->
-            <!-- <li class="sidebar-item active">
-              <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link">
-                <i class="align-middle" data-feather="sliders"></i>
-                  <line x1="4" y1="21" x2="4" y2="14"></line>
-                  <line x1="4" y1="10" x2="4" y2="3"></line>
-                  <line x1="12" y1="21" x2="12" y2="12"></line>
-                  <line x1="12" y1="8" x2="12" y2="3"></line>
-                  <line x1="20" y1="21" x2="20" y2="16"></line>
-                  <line x1="20" y1="12" x2="20" y2="3"></line>
-                  <line x1="1" y1="14" x2="7" y2="14"></line>
-                  <line x1="9" y1="8" x2="15" y2="8"></line>
-                  <line x1="17" y1="16" x2="23" y2="16"></line>
-                </svg>
-                <span class="align-middle">Dashboard</span>
-              </a>
-              <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                <li class="sidebar-item active"><a class="sidebar-link" href="index.html">Analytics</a></li>
-                
-              </ul>
-            </li> -->
-            <li class="sidebar-item active">
-              <a
-                class="sidebar-link"
-                href="index.html"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="dropdown-toggle"
-              >
-                <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a
-                class="sidebar-link"
-                href="party.html"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="dropdown-toggle"
-              >
-                <i class="align-middle" data-feather="user"></i> <span class="align-middle">Party</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="loans.html">
-                <i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">Loans</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="agents.html">
-                <i class="align-middle" data-feather="users"></i> <span class="align-middle">Agents</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="reports.html">
-                <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Reports</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="#">
-                <i class="align-middle" data-feather="rotate-ccw"></i> <span class="align-middle">Logout</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
+    
+      <?php include ('include/sidebar.php')?>
       <div class="main">
-        <nav class="navbar navbar-expand navbar-light navbar-bg">
-          <a class="sidebar-toggle js-sidebar-toggle">
-            <i class="hamburger align-self-center"></i>
-          </a>
-
-          <div class="navbar-collapse collapse">
-            <ul class="navbar-nav navbar-align">
-              <li class="nav-item dropdown">
-                <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
-                  <div class="position-relative">
-                    <i class="align-middle" data-feather="bell"></i>
-                    <span class="indicator">3</span>
-                  </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
-                  <div class="dropdown-menu-header">4 New Notifications</div>
-                  <div class="list-group">
-                    <a href="#" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-danger" data-feather="alert-circle"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">Update completed</div>
-                          <div class="text-muted small mt-1">Restart server 12 to complete the update.</div>
-                          <div class="text-muted small mt-1">30m ago</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="#" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-warning" data-feather="bell"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">Lorem ipsum</div>
-                          <div class="text-muted small mt-1">Aliquam ex eros, imperdiet vulputate hendrerit et.</div>
-                          <div class="text-muted small mt-1">2h ago</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="#" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-primary" data-feather="home"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">Login from 192.186.1.8</div>
-                          <div class="text-muted small mt-1">5h ago</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="#" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-success" data-feather="user-plus"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">New connection</div>
-                          <div class="text-muted small mt-1">Christina accepted your request.</div>
-                          <div class="text-muted small mt-1">14h ago</div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="dropdown-menu-footer">
-                    <a href="#" class="text-muted">Show all notifications</a>
-                  </div>
-                </div>
-              </li>
-
-              <li class="nav-item dropdown">
-                <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                  <i class="align-middle" data-feather="settings"></i>
-                </a>
-
-                <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                  <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" />
-                  <span class="text-dark">Charles Hall</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end">
-                  <a class="dropdown-item" href="pages-profile.html"
-                    ><i class="align-middle me-1" data-feather="user"></i> Profile</a
-                  >
-
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#"
-                    ><i class="align-middle me-1" data-feather="rotate-ccw"></i>Logout</a
-                  >
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
+        <?php include ('include/header.php')?>
         <main class="content">
           <div class="container-fluid p-0">
             <h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
-
+            
             <div class="row">
               <div class="col-xl-6 col-xxl-5 d-flex">
                 <div class="w-100">
@@ -542,19 +375,8 @@
             </div>
           </div>
         </main>
-
-        <footer class="footer">
-          <div class="container-fluid">
-            <div class="row text-muted">
-              <div class="col-6 text-start">
-                <p class="mb-0">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>LenaDenaBank</strong></a>
-                  &copy;
-                </p>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <?php include ('include/footer.php')?>
+        
       </div>
     </div>
 
