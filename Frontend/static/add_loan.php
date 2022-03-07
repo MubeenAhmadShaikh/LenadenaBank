@@ -7,6 +7,87 @@ if ($_SESSION['username']==false) {
 }
 ?>
 
+<?php 
+if (isset($_POST['add'])) {
+  $pname = mysqli_real_escape_string($conn,$_POST['name']);
+  $kyc = mysqli_real_escape_string($conn, $_POST['kyc']); 
+  $contact = mysqli_real_escape_string($conn, $_POST['contact']);
+  $dob = mysqli_real_escape_string($conn, $_POST['dob']);
+  $laddress = mysqli_real_escape_string($conn, $_POST['laddress']);
+  $city = mysqli_real_escape_string($conn, $_POST['city']);
+  $occupation = mysqli_real_escape_string($conn, $_POST['occupation']);
+  $description = mysqli_real_escape_string($conn, $_POST['description']);
+  $loan_amount = mysqli_real_escape_string($conn, $_POST['lamount']);
+  $loan_intrest = mysqli_real_escape_string($conn, $_POST['lintrest']);
+  $loan_duration = mysqli_real_escape_string($conn, $_POST['lduration']);
+  $agentid = mysqli_real_escape_string($conn, $_POST['agentId']);
+  $agent_commission = mysqli_real_escape_string($conn, $_POST['agent_commission']);
+  date_default_timezone_set('Asia/Calcutta'); 
+  $sanction_date=date("Y-m-d");
+  echo "<script>console.log('$pfirst_name,$plast_name,$pname,$kyc,$adhaar_number,$pan,$gender',$sanction_date);</script>";
+  
+  if($kyc=='yes'){
+    $adhaar_number = mysqli_real_escape_string($conn,$_POST['adhaar_number']);
+    $pan_number = mysqli_real_escape_string($conn,$_POST['pan_number']);
+    $kyc = true;
+    $ins_party="INSERT INTO loan (`lname`,`kyc`,`adhar_number`,`pan_card`,`address`,`city`,`agent_code`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`) VALUES ('$pname','$kyc','$adhaar_number','$pan_number','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration')";
+
+    if(mysqli_query($conn,$ins_party)){
+      $q1="SELECT `sr_no` FROM `loan` WHERE `contact_num`='$contact'";
+      $get_sr=mysqli_query($conn,$q1);
+
+      if(mysqli_num_rows($get_sr)>0){
+                echo "<script>console.log('hey');</script>";
+
+        while($row = mysqli_fetch_assoc($get_sr)){
+            $sr_no= $row['sr_no'];
+        }
+        echo "<script>console.log('$sr_no');</script>"; 
+        $sr_no_new=$sr_no;
+        $ins_party_id = "UPDATE `loan` SET `loan_id`='$sr_no_new' WHERE `contact_num`='$contact' ";        
+        echo "<script>console.log('$ins_party_id');</script>";
+
+        if(mysqli_query($conn,$ins_party_id)){
+            header('Location:loans.php');
+        }
+    }
+
+    }
+
+  }
+
+  elseif($kyc=="no"){
+    $kyc = false;
+    $ins_party="INSERT INTO loan (`lname`,`kyc`,`address`,`city`,`agent_code`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`) VALUES ('$pname','$kyc','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration')";
+
+    if(mysqli_query($conn,$ins_party)){
+      $q1="SELECT `sr_no` FROM `loan` WHERE `contact_num`='$contact'";
+      $get_sr=mysqli_query($conn,$q1);
+
+      if(mysqli_num_rows($get_sr)>0){
+                echo "<script>console.log('hey');</script>";
+
+        while($row = mysqli_fetch_assoc($get_sr)){
+            $sr_no= $row['sr_no'];
+        }
+        echo "<script>console.log('$sr_no');</script>"; 
+        $sr_no_new=$sr_no;
+        $ins_party_id = "UPDATE `loan` SET `loan_id`='$sr_no_new' WHERE `contact_num`='$contact' ";        
+        echo "<script>console.log('$ins_party_id');</script>";
+
+        if(mysqli_query($conn,$ins_party_id)){
+            header('Location:loans.php');
+        }
+    }
+
+    }
+
+  }
+
+    ob_end_flush();
+      }
+?>
+
 
 <!-- #TODO
 1. Add the names of each field according to you
@@ -48,11 +129,11 @@ if ($_SESSION['username']==false) {
                   <div class="row"> 
                     <div class="w-50 mb-3">
                       <label  class="form-label">Loan Name</label>
-                      <input type="text" class="form-control" name="pfirst_name" aria-describedby="emailHelp">
+                      <input type="text" class="form-control" name="name" aria-describedby="emailHelp">
                     </div>
                     <div class="w-50 mb-3">
                       <label  class="form-label">Contact number</label>
-                      <input type="phone" class="form-control" name=""  >
+                      <input type="phone" class="form-control" name="contact"  >
                     </div>
                     
                   </div>
@@ -91,12 +172,12 @@ if ($_SESSION['username']==false) {
                 <div class="row"> 
                 <div class="w-50 mb-3">
                         <label  class="form-label">Occupation</label>
-                        <input type="phone" class="form-control" name=""  >
+                        <input type="phone" class="form-control" name="occupation"  >
                     </div>
                     
                     <div class="w-50 mb-3">
                         <label  class="form-label">City</label>
-                        <input type="decimal" class="form-control" name="" >
+                        <input type="decimal" class="form-control" name="city" >
                     </div>
                     
                   </div>
@@ -104,11 +185,11 @@ if ($_SESSION['username']==false) {
                   <div class="row"> 
                   <div class="w-50 mb-3">
                       <label  class="form-label">Address</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="laddress"></textarea>
                     </div>
                     <div class="w-50 mb-3">
                       <label  class="form-label">Description</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
                      
                     </div>          
                 </div>
@@ -118,15 +199,15 @@ if ($_SESSION['username']==false) {
                 <div class="row"> 
                     <div class="w-50 mb-3">
                       <label  class="form-label">Loan Amount</label>
-                      <input type="text" class="form-control" name="">
+                      <input type="text" class="form-control" name="lamount">
                     </div>
                     <div class="w-50 mb-3">
                       <label  class="form-label">Loan Intrest</label>
-                      <input type="decimal" class="form-control" name="" >
+                      <input type="decimal" class="form-control" name="lintrest" >
                     </div>
                     <div class="w-50 mb-3">
                       <label  class="form-label">Loan duration</label>
-                      <input type="text" class="form-control" name="" >
+                      <input type="number" class="form-control" name="lduration" placeholder="Enter Duration in Year's" >
                     </div>
                     
                   </div>
@@ -134,7 +215,7 @@ if ($_SESSION['username']==false) {
                 <div class="row"> 
                     <div class="w-50 mb-3">
                       <label  class="form-label">Agent id</label>
-                      <select class="form-select" aria-label="Default select example" name="kyc">
+                      <select class="form-select" aria-label="Default select example" name="agentId">
                         <option selected>Select Agents</option>
                         <option value="Hans">Hans</option>
                         <option value="khizar">Khizar</option>
@@ -142,7 +223,7 @@ if ($_SESSION['username']==false) {
                     </div>
                     <div class="w-50 mb-3">
                       <label  class="form-label">Agent commission</label>
-                      <input type="decimal" class="form-control" name=""  >
+                      <input type="decimal" class="form-control" name="agent_commission"  >
                     </div>          
                 </div>
                 
