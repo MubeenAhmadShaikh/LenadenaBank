@@ -23,6 +23,11 @@
       <?php include ('include/header.php')?>
 
         <main class="content">
+          <!-- 
+            Loans status
+            
+            <td><span class="badge bg-success">Active</span></td>
+           -->
           <div class="container-fluid p-0">
             <h1 class="h3 mb-3">Loans</h1>
 
