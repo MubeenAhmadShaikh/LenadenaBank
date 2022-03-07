@@ -6,83 +6,11 @@ if ($_SESSION['username']==false) {
    header("Location:sign_in.php");
 }
 ?>
+
+
 <!-- #TODO
-1. Add Date of birth php
- -->
-<?php 
-if (isset($_POST['add'])) {
-  $afirst_name = mysqli_real_escape_string($conn,$_POST['afirst_name']);
-  $alast_name = mysqli_real_escape_string($conn,$_POST['alast_name']);
-  $aname = $afirst_name." ".$alast_name;
-  $kyc = mysqli_real_escape_string($conn, $_POST['kyc']); 
-  $gender = mysqli_real_escape_string($conn,$_POST['gender']);
-  $f_letter_of_fname = $afirst_name[0];
-  $l_letter_of_fname = $alast_name[0];
-  echo "<script>console.log('$afirst_name,$alast_name,$aname,$kyc,$adhaar_number,$pan,$gender,$f_letter_of_fname,$l_letter_of_fname');</script>";
-  
-  if($kyc=='yes'){
-    $adhaar_number = mysqli_real_escape_string($conn,$_POST['adhaar_number']);
-    $pan_number = mysqli_real_escape_string($conn,$_POST['pan_number']);
-    $kyc = true;
-    $ins_agent="INSERT INTO agent(aname,kyc,adhaar_number,pan_number,gender) VALUES('$aname','$kyc','$adhaar_number','$pan_number','$gender')";
-
-    if(mysqli_query($conn,$ins_agent)){
-      $q1="SELECT `sr_no_agent` FROM `agent` WHERE `aname`='$aname'";
-      $get_sr=mysqli_query($conn,$q1);
-
-      if(mysqli_num_rows($get_sr)>0){
-                echo "<script>console.log('hey');</script>";
-
-        while($row = mysqli_fetch_assoc($get_sr)){
-            $sr_no_agent= $row['sr_no_agent'];
-        }
-      
-        $sr_no_agent_new=$f_letter_of_fname.$l_letter_of_fname.$sr_no_agent;
-        $ins_agent_id = "UPDATE `agent` SET `agent_id`='$sr_no_agent_new' WHERE `aname`='$aname' ";        
-        echo "<script>console.log('$ins_agent_id');</script>";
-
-        if(mysqli_query($conn,$ins_agent_id)){
-            header('Location:agents.php');
-        }
-    }
-
-    }
-
-  }
-
-  elseif($kyc=="no"){
-    $kyc = false;
-    $ins_agent="INSERT INTO agent(aname,kyc,gender) VALUES('$aname','$kyc','$gender')";
-
-    if(mysqli_query($conn,$ins_agent)){
-      $q1="SELECT `sr_no_agent` FROM `agent` WHERE `aname`='$aname'";
-      $get_sr=mysqli_query($conn,$q1);
-
-      if(mysqli_num_rows($get_sr)>0){
-                echo "<script>console.log('hey');</script>";
-
-        while($row = mysqli_fetch_assoc($get_sr)){
-            $sr_no_agent= $row['sr_no_agent'];
-        }
-      
-
-        $sr_no_agent_new=$f_letter_of_fname.$l_letter_of_fname.$sr_no_agent;
-        $ins_agent_id = "UPDATE `agent` SET `agent_id`='$sr_no_agent_new' WHERE `aname`='$aname' ";        
-        echo "<script>console.log('$ins_agent_id');</script>";
-
-        if(mysqli_query($conn,$ins_agent_id)){
-            header('Location:agents.php');
-        }
-    }
-
-    }
-
-  }
-
-    ob_end_flush();
-      }
-?>
-
+1. Add the names of each field according to you
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -111,7 +39,7 @@ if (isset($_POST['add'])) {
 
         <main class="content">
           <div class="container-fluid p-0">
-              <h1 class="h3 mb-3">Add Agent</h1>
+              <h1 class="h3 mb-3">Add Party</h1>
               <div class="row">
               <div class="col-12">
                 <div class="card">
@@ -120,11 +48,11 @@ if (isset($_POST['add'])) {
                   <div class="row"> 
                     <div class="w-50 mb-3">
                       <label  class="form-label">First Name</label>
-                      <input type="text" class="form-control" name="afirst_name" aria-describedby="emailHelp">
+                      <input type="text" class="form-control" name="pfirst_name" aria-describedby="emailHelp">
                     </div>
                     <div class="w-50 mb-3">
                       <label  class="form-label">Last Name</label>
-                      <input type="text" class="form-control" name="alast_name"  aria-describedby="emailHelp">
+                      <input type="text" class="form-control" name="plast_name"  aria-describedby="emailHelp">
                     </div>
                     
                   </div>
@@ -158,20 +86,90 @@ if (isset($_POST['add'])) {
                     <input type="text" class="form-control" name="pan_number"  aria-describedby="emailHelp">
                   </div>
                 </div>
-                  <!-- fourth row -->
+                <!-- fourth row -->
                 <div class="row"> 
-                <div class="w-50 mb-3">
-                    <label  class="form-label">Date of birth</label>
-                    <input type="date" class="form-control" name="dob" >
-                </div>
-                <div class="w-50 mb-3">
+                    <div class="w-50 mb-3">
                       <label  class="form-label">Contact number</label>
                       <input type="phone" class="form-control" name=""  >
                     </div>
-                  
+                    <div class="w-50 mb-3">
+                        <label  class="form-label">Date of birth</label>
+                        <input type="date" class="form-control" name="dob"  >
+                    </div>          
+                </div>
+                  <!-- Fifth row -->
+                <div class="row"> 
+                    <div class="w-50 mb-3">
+                      <label  class="form-label">Address</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="w-50 mb-3">
+                        <label  class="form-label">City</label>
+                        <input type="decimal" class="form-control" name="" >
+                    </div>
+                    
+                  </div>
+                  <!-- sixth row -->
+                  <div class="row"> 
+                    <div class="w-50 mb-3">
+                        <label  class="form-label">Occupation</label>
+                        <input type="phone" class="form-control" name=""  >
+                    </div>
+                    <div class="w-50 mb-3">
+                      <label  class="form-label">Description</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                     
+                    </div>          
                 </div>
                 
-  
+                  <!-- seventh row -->
+                
+                <div class="row"> 
+                    <div class="w-50 mb-3">
+                      <label  class="form-label">Balance</label>
+                      <input type="text" class="form-control" name="" aria-describedby="emailHelp">
+                    </div>
+                    <div class="w-50 mb-3">
+                      <label  class="form-label">Intrest amount</label>
+                      <input type="decimal" class="form-control" name=""  aria-describedby="emailHelp">
+                    </div>
+                    
+                  </div>
+                <!-- eighth row -->
+                <div class="row"> 
+                    <div class="w-50 mb-3">
+                      <label  class="form-label">Agent id</label>
+                      <select class="form-select" aria-label="Default select example" name="kyc">
+                        <option selected>Select Agents</option>
+                        <option value="Hans">Hans</option>
+                        <option value="khizar">Khizar</option>
+                      </select>
+                    </div>
+                    <div class="w-50 mb-3">
+                      <label  class="form-label">Agent comission</label>
+                      <input type="decimal" class="form-control" name=""  >
+                    </div>          
+                </div>
+                
+  <!-- 
+      
+        pname 	 done
+        kyc 	done
+        adhar_number done
+        pan_card  done
+        balance done
+        address done
+        city done
+        agent_id done
+        agent_commision done	
+        contact_num done  
+        dob done	
+        occupation 
+        description 
+    	interest done
+
+
+   -->
   
   <button type="submit" class="btn btn-primary" name="add">Submit</button>
 </form>
