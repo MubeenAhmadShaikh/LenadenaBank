@@ -33,24 +33,8 @@ if (isset($_POST['add'])) {
     $ins_party="INSERT INTO loan (`lname`,`kyc`,`adhar_number`,`pan_card`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`) VALUES ('$pname','$kyc','$adhaar_number','$pan_number','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration')";
 
     if(mysqli_query($conn,$ins_party)){
-      $q1="SELECT `sr_no` FROM `loan` WHERE `contact_num`='$contact'";
-      $get_sr=mysqli_query($conn,$q1);
-
-      if(mysqli_num_rows($get_sr)>0){
-                echo "<script>console.log('hey');</script>";
-
-        while($row = mysqli_fetch_assoc($get_sr)){
-            $sr_no= $row['sr_no'];
-        }
-        echo "<script>console.log('$sr_no');</script>"; 
-        $sr_no_new=$sr_no;
-        $ins_party_id = "UPDATE `loan` SET `loan_id`='$sr_no_new' WHERE `contact_num`='$contact' ";        
-        echo "<script>console.log('$ins_party_id');</script>";
-
-        if(mysqli_query($conn,$ins_party_id)){
-            header('Location:loans.php');
-        }
-    }
+      header('Location:loans.php');
+      
 
     }
 
@@ -61,24 +45,7 @@ if (isset($_POST['add'])) {
     $ins_party="INSERT INTO loan (`lname`,`kyc`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`) VALUES ('$pname','$kyc','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration')";
 
     if(mysqli_query($conn,$ins_party)){
-      $q1="SELECT `sr_no` FROM `loan` WHERE `contact_num`='$contact'";
-      $get_sr=mysqli_query($conn,$q1);
-
-      if(mysqli_num_rows($get_sr)>0){
-                echo "<script>console.log('hey');</script>";
-
-        while($row = mysqli_fetch_assoc($get_sr)){
-            $sr_no= $row['sr_no'];
-        }
-        echo "<script>console.log('$sr_no');</script>"; 
-        $sr_no_new=$sr_no;
-        $ins_party_id = "UPDATE `loan` SET `loan_id`='$sr_no_new' WHERE `contact_num`='$contact' ";        
-        echo "<script>console.log('$ins_party_id');</script>";
-
-        if(mysqli_query($conn,$ins_party_id)){
-            header('Location:loans.php');
-        }
-    }
+      header('Location:loans.php');
 
     }
 

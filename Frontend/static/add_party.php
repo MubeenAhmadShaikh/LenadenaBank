@@ -36,23 +36,13 @@ if (isset($_POST['add'])) {
     $ins_party="INSERT INTO party (`pname`,`kyc`,`adhar_number`,`pan_card`,`total_balance`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`account_opening_date`,`dob`,`occupation`,`discription`,`interest`,`gender`) VALUES('$pname','$kyc','$adhaar_number','$pan_number','$pbalance','$paddress','$city','$agentid','$agent_commission','$contact','$account_open_date','$dob','$occupation','$description','$rate_of_intrest','$gender')";
 
     if(mysqli_query($conn,$ins_party)){
-      $q1="SELECT `sr_no` FROM `party` WHERE `contact_num`='$contact'";
+      $q1="SELECT `account_number` FROM `party` WHERE `contact_num`='$contact'";
       $get_sr=mysqli_query($conn,$q1);
 
       if(mysqli_num_rows($get_sr)>0){
-                echo "<script>console.log('hey');</script>";
+              echo "<script>console.log('maachudipadi h');</script>";
 
-        while($row = mysqli_fetch_assoc($get_sr)){
-            $sr_no= $row['sr_no'];
-        }
-        echo "<script>console.log('$sr_no');</script>"; 
-        $sr_no_new=$sr_no;
-        $ins_party_id = "UPDATE `party` SET `account_number`='$sr_no_new' WHERE `contact_num`='$contact' ";        
-        echo "<script>console.log('$ins_party_id');</script>";
-
-        if(mysqli_query($conn,$ins_party_id)){
-            header('Location:party.php');
-        }
+       header('Location:party.php');
     }
 
     }
@@ -64,23 +54,11 @@ if (isset($_POST['add'])) {
     $ins_party="INSERT INTO party (`pname`,`kyc`,`total_balance`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`account_opening_date`,`dob`,`occupation`,`discription`,`interest`,`gender`) VALUES('$pname','$kyc','$pbalance','$paddress','$city','$agentid','$agent_commission','$contact','$account_open_date','$dob','$occupation','$description','$rate_of_intrest','$gender')";
 
     if(mysqli_query($conn,$ins_party)){
-      $q1="SELECT `sr_no` FROM `party` WHERE `contact_num`='$contact'";
+      $q1="SELECT `loan_id` FROM `party` WHERE `contact_num`='$contact'";
       $get_sr=mysqli_query($conn,$q1);
 
       if(mysqli_num_rows($get_sr)>0){
-                echo "<script>console.log('hey');</script>";
-
-        while($row = mysqli_fetch_assoc($get_sr)){
-            $sr_no= $row['sr_no'];
-        }
-        echo "<script>console.log('$sr_no');</script>"; 
-        $sr_no_new=$sr_no;
-        $ins_party_id = "UPDATE `party` SET `account_number`='$sr_no_new' WHERE `contact_num`='$contact' ";        
-        echo "<script>console.log('$ins_party_id');</script>";
-
-        if(mysqli_query($conn,$ins_party_id)){
-            header('Location:party.php');
-        }
+              header('Location:party.php');
     }
 
     }
