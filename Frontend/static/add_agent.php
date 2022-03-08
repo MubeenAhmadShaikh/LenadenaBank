@@ -18,13 +18,14 @@ if (isset($_POST['add'])) {
   $gender = mysqli_real_escape_string($conn,$_POST['gender']);
   $f_letter_of_fname = $afirst_name[0];
   $l_letter_of_fname = $alast_name[0];
-  echo "<script>console.log('$afirst_name,$alast_name,$aname,$kyc,$adhaar_number,$pan,$gender,$f_letter_of_fname,$l_letter_of_fname');</script>";
+  $dob = mysqli_real_escape_string($conn, $_POST['dob']);
+
   
   if($kyc=='yes'){
     $adhaar_number = mysqli_real_escape_string($conn,$_POST['adhaar_number']);
     $pan_number = mysqli_real_escape_string($conn,$_POST['pan_number']);
     $kyc = true;
-    $ins_agent="INSERT INTO agent(aname,kyc,adhaar_number,pan_number,gender) VALUES('$aname','$kyc','$adhaar_number','$pan_number','$gender')";
+    $ins_agent="INSERT INTO agent(aname,kyc,adhaar_number,pan_number,gender,dob) VALUES('$aname','$kyc','$adhaar_number','$pan_number','$gender','$dob' )";
 
     if(mysqli_query($conn,$ins_agent)){
       $q1="SELECT `sr_no_agent` FROM `agent` WHERE `aname`='$aname'";
@@ -52,7 +53,7 @@ if (isset($_POST['add'])) {
 
   elseif($kyc=="no"){
     $kyc = false;
-    $ins_agent="INSERT INTO agent(aname,kyc,gender) VALUES('$aname','$kyc','$gender')";
+    $ins_agent="INSERT INTO agent(aname,kyc,gender,dob) VALUES('$aname','$kyc','$gender','$dob')";
 
     if(mysqli_query($conn,$ins_agent)){
       $q1="SELECT `sr_no_agent` FROM `agent` WHERE `aname`='$aname'";
