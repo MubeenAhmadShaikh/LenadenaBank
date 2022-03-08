@@ -27,6 +27,7 @@ if (isset($_POST['add'])) {
   echo "<script>console.log('$pfirst_name,$plast_name,$pname,$kyc,$adhaar_number,$pan,$gender',$sanction_date);</script>";
   
   if($kyc=='yes'){
+    
     $adhaar_number = mysqli_real_escape_string($conn,$_POST['adhaar_number']);
     $pan_number = mysqli_real_escape_string($conn,$_POST['pan_number']);
     $kyc = true;
