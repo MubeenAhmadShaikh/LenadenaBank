@@ -30,7 +30,7 @@ if (isset($_POST['add'])) {
     $adhaar_number = mysqli_real_escape_string($conn,$_POST['adhaar_number']);
     $pan_number = mysqli_real_escape_string($conn,$_POST['pan_number']);
     $kyc = true;
-    $ins_party="INSERT INTO loan (`lname`,`kyc`,`adhar_number`,`pan_card`,`address`,`city`,`agent_code`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`) VALUES ('$pname','$kyc','$adhaar_number','$pan_number','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration')";
+    $ins_party="INSERT INTO loan (`lname`,`kyc`,`adhar_number`,`pan_card`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`) VALUES ('$pname','$kyc','$adhaar_number','$pan_number','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration')";
 
     if(mysqli_query($conn,$ins_party)){
       $q1="SELECT `sr_no` FROM `loan` WHERE `contact_num`='$contact'";
@@ -58,7 +58,7 @@ if (isset($_POST['add'])) {
 
   elseif($kyc=="no"){
     $kyc = false;
-    $ins_party="INSERT INTO loan (`lname`,`kyc`,`address`,`city`,`agent_code`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`) VALUES ('$pname','$kyc','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration')";
+    $ins_party="INSERT INTO loan (`lname`,`kyc`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`) VALUES ('$pname','$kyc','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration')";
 
     if(mysqli_query($conn,$ins_party)){
       $q1="SELECT `sr_no` FROM `loan` WHERE `contact_num`='$contact'";
