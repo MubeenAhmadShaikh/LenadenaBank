@@ -216,9 +216,25 @@ if (isset($_POST['add'])) {
                     <div class="w-50 mb-3">
                       <label  class="form-label">Agent id</label>
                       <select class="form-select" aria-label="Default select example" name="agentId">
-                        <option selected>Select Agents</option>
-                        <option value="Hans">Hans</option>
-                        <option value="khizar">Khizar</option>
+                       <option selected>Select Agents </option>
+                        <option name = 'none'>Select This If No Agent Is Req</option>
+
+                        <?php
+                        $querry="SELECT `aname`,`agent_id` FROM `agent`;";
+                         
+                        $result=mysqli_query($conn,$querry) or die(mysqli_error($conn));
+
+                        if(mysqli_num_rows($result)>0)
+                        {
+                          echo "<script>console.log('test1');</script>";
+                        
+                        while($row=mysqli_fetch_assoc($result)){
+                           echo "<script>console.log('hey');</script>";
+
+                        ?>
+                        <option value=<?php echo $row["agent_id"]; ?>><?php echo $row["aname"]." (".$row['agent_id'].")";?></option>
+                      <?php }
+                    }?>
                       </select>
                     </div>
                     <div class="w-50 mb-3">
