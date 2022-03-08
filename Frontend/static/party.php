@@ -1,3 +1,12 @@
+<?php
+  include('include/connection.php');
+  error_reporting(0);
+  session_start();
+  if ($_SESSION['username']==false) {
+     header("Location:sign_in.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,151 +66,35 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr id="party1">
-                          <td>
-                            101
-                          </td>
-                          <td>Garrett Winters</td>
-                          <td>20000</td>
-                          <td>Robert kioski (Rk1)</td>
-                          <td class="table-action d-flex justify-content-around">
-																<a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-																<a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
-																
-														</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            102
-                          </td>
-                          <td>Kamlesh</td>
-                          <td>20000</td>
-                          <td>Robert kioski (Rk1)</td>
-                          <td class="table-action d-flex justify-content-around">
-																<a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-																<a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
-																
-														</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            103
-                          </td>
-                          <td>Suresh</td>
-                          <td>20000</td>
-                          <td>Robert kioski (Rk1)</td>
-                          <td class="table-action d-flex justify-content-around">
-																<a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-																<a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
-																
-														</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            104
-                          </td>
-                          <td>Ramesh</td>
-                          <td>20000</td>
-                          <td>Robert kioski (Rk1)</td>
-                          <td class="table-action d-flex justify-content-around">
-																<a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-																<a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
-																
-														</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            105
-                          </td>
-                          <td>Jake williams</td>
-                          <td>20000</td>
-                          <td>Robert kioski (Rk1)</td>
-                          <td class="table-action d-flex justify-content-around">
-																<a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-																<a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
-																
-														</td>
-                        </tr>
-                        
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+                        <?php
+                          $querry="SELECT * FROM `party`";
+                           
+                          $result=mysqli_query($conn,$querry) or die(mysqli_error($conn));
 
-              <div class="col-xl-4 d-none partyDetails">
-                <div class="card">
-                  <div class="card-header">
-                    
-                    <h5 class="card-title mb-0"> 	Garrett Winters</h5>
-                  </div>
-                  <div class="card-body">
-                    
+                          if(mysqli_num_rows($result)>0)
+                          {
+                            echo "<script>console.log('test1');</script>";                            
+                            while($row=mysqli_fetch_assoc($result)){
+                               echo "<script>console.log('hey');</script>";
+                              
+                        ?>
 
-                    <table class="table table-sm  mb-4">
-                      <tbody>
+                      <!--   <tr id="party1" > -->
                         <tr>
-                          <th>Acc.No.</th>
-                          <td>101</td>
-                        </tr>
-                        <tr>
-                          <th>Name</th>
-                          <td>Garrett Winters</td>
-                        </tr>
-                        <tr>
-                          <th>DOB</th>
-                          <td>12/02/2021</td>
-                        </tr>
-                        <tr>
-                          <th>Occupation</th>
-                          <td>Contractor</td>
-                        </tr>
-                        <tr>
-                          <th>Description</th>
-                          <td>Party description will be mentioned here</td>
-                        </tr>
-                        
-                        <tr>
-                          <th>Balance</th>
-                          <td>20000</td>
-                        </tr>
-                        <tr>
-                          <th>Interest</th>
-                          <td>5%</td>
-                        </tr>
-                        <tr>
-                          <th>Phone</th>
-                          <td>+1234123123123</td>
-                        </tr>
-                        <tr>
-                          <th>KYC Status</th>
-                          <td><span class="badge bg-success">Completed</span></td>
-                        </tr>
-                        <tr>
-                          <th>Adhaar Number</th>
-                          <td>222234444555</td>
-                        </tr>
-                        <tr>
-                          <th>PAN Number</th>
-                          <td>222234444555</td>
-                        </tr>
-                        <tr>
-                          <th>Agent</th>
-                          <td>Robert Kioski (RK1)</td>
-                        </tr>
-                        <tr>
-                          <th>Agent Commission</th>
-                          <td>12.5%</td>
-                        </tr>
-                        <tr>
-                          <th>City</th>
-                          <td>Mumbai</td>
-                        </tr>
-                        <tr>
-                          <th>Address</th>
-                          <td>12, A wing, Abc Apartment, xyz city,1111 </td>
-                        </tr>
-                        
+                          <td><?php echo $row['account_number'];?></td>
+                          <td><?php echo $row['pname']; ?></td>
+                          <td><?php echo $row['total_balance']; ?></td>
+                          <td><?php echo $row['agent_id'];?></td>
+
+                            <td class="table-action d-flex justify-content-around">
+                              <a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
+                              <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
+                            </td>
+                          
+                      <?php 
+                      } }
+                      ?>
+                    </tr>
                       </tbody>
                     </table>
 
