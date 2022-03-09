@@ -40,9 +40,21 @@ if (isset($_POST['add'])) {
       $get_sr=mysqli_query($conn,$q1);
 
       if(mysqli_num_rows($get_sr)>0){
-              echo "<script>console.log('maachudipadi h');</script>";
+        echo "<script>console.log('maachudipadi h');</script>";
+        $get_acc_no="SELECT `account_number` FROM `party` WHERE `contact_num`='$contact'";
+        $result=mysqli_query($conn,$get_acc_no) or die(mysqli_error($conn));
+      if(mysqli_num_rows($result)>0){
+         while($row=mysqli_fetch_assoc($result)){
+            $get_acc_no=$row['account_number'];
 
-       header('Location:party.php');
+            $ins_trans ="INSERT INTO party_cashbook(`pname`, `account_number`, `date`, `type`, `amount`, `total_balance`) VALUES('$pname','$get_acc_no','$account_open_date','credit','$pbalance','$pbalance')";
+
+          if(mysqli_query($conn,$ins_trans)){
+          header('Location:party.php');}
+
+         }
+       }
+
     }
 
     }
@@ -54,14 +66,29 @@ if (isset($_POST['add'])) {
     $ins_party="INSERT INTO party (`pname`,`kyc`,`total_balance`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`account_opening_date`,`dob`,`occupation`,`discription`,`interest`,`gender`) VALUES('$pname','$kyc','$pbalance','$paddress','$city','$agentid','$agent_commission','$contact','$account_open_date','$dob','$occupation','$description','$rate_of_intrest','$gender')";
 
     if(mysqli_query($conn,$ins_party)){
-      $q1="SELECT `loan_id` FROM `party` WHERE `contact_num`='$contact'";
+      $q1="SELECT `account_number` FROM `party` WHERE `contact_num`='$contact'";
       $get_sr=mysqli_query($conn,$q1);
 
       if(mysqli_num_rows($get_sr)>0){
-              header('Location:party.php');
+        echo "<script>console.log('maachudipadi h');</script>";
+        $get_acc_no="SELECT `account_number` FROM `party` WHERE `contact_num`='$contact'";
+        $result=mysqli_query($conn,$get_acc_no) or die(mysqli_error($conn));
+      if(mysqli_num_rows($result)>0){
+         while($row=mysqli_fetch_assoc($result)){
+            $get_acc_no=$row['account_number'];
+
+            $ins_trans ="INSERT INTO party_cashbook(`pname`, `account_number`, `date`, `type`, `amount`, `total_balance`) VALUES('$pname','$get_acc_no','$account_open_date','credit','$pbalance','$pbalance')";
+
+          if(mysqli_query($conn,$ins_trans)){
+          header('Location:party.php');}
+
+         }
+       }
+
     }
 
     }
+
 
   }
 
