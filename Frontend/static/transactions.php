@@ -1,3 +1,11 @@
+<?php
+include('include/connection.php');
+error_reporting(0);
+session_start();
+if ($_SESSION['username']==false) {
+   header("Location:sign_in.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,9 +27,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
   </head>
 <?php 
-if (isset($_POST['transactions'])) {
-  
-}?>
+if (isset($_POST['transaction'])) {
+
+    if(mysqli_real_escape_string($conn,$_POST['trans_type']=='debit')){
+      echo "<script>console.log('debit');</script>";
+      
+
+    }
+    if(mysqli_real_escape_string($conn,$_POST['trans_type']=='credit')){
+      echo "<script>console.log('credit');</script>";
+
+    }
+
+ }
+?>
   <body>
     <div class="wrapper">
     <?php include ('include/sidebar.php')?>
@@ -74,7 +93,7 @@ if (isset($_POST['transactions'])) {
                   </div>
                 <div class="row"> 
                     <div class="w-100 mb-3">
-                      <input type="submit" class="form-control btn btn-primary" value="Submit" name="transfer" >
+                      <button type="submit" class="form-control btn btn-primary" name="transaction" >Submit</button>
                     </div>
                     
                     
@@ -102,7 +121,7 @@ if (isset($_POST['transactions'])) {
         <?php include ('include/footer.php')?>
       </div>
     </div>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         
     window.onload = function(){
         let inputFields= document.querySelectorAll(".input")
@@ -114,7 +133,7 @@ if (isset($_POST['transactions'])) {
             }
         }
 }  
-    </script>
+    </script> -->
     <script src="js/app.js"></script>
   </body>
 </html>

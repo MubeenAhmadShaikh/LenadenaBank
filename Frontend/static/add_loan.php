@@ -26,7 +26,6 @@ if (isset($_POST['add'])) {
   $agent_commission = mysqli_real_escape_string($conn, $_POST['agent_commission']);
   date_default_timezone_set('Asia/Calcutta'); 
   $sanction_date=date("Y-m-d");
-  echo "<script>console.log('$pfirst_name,$plast_name,$pname,$kyc,$adhaar_number,$pan,$gender',$sanction_date);</script>";
   
   if($kyc=='yes'){
     
@@ -34,10 +33,32 @@ if (isset($_POST['add'])) {
     $pan_number = mysqli_real_escape_string($conn,$_POST['pan_number']);
     $kyc = true;
     $ins_party="INSERT INTO loan (`lname`,`kyc`,`adhar_number`,`pan_card`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`,`total_balance`) VALUES ('$pname','$kyc','$adhaar_number','$pan_number','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration','$balance')";
-
+    $credit='credit';
     if(mysqli_query($conn,$ins_party)){
-      header('Location:loans.php');
-      
+
+      $get_loan_id="SELECT `loan_id` FROM `loan` WHERE `contact_num`='$contact'";
+      $result=mysqli_query($conn,$get_loan_id) or die(mysqli_error($conn));
+      if(mysqli_num_rows($result)>0){
+         while($row=mysqli_fetch_assoc($result)){
+          $get_loan_id=$row['loan_id'];
+          echo"<script>console.log($get_loan_id)</script>";
+          $ins_trans ="INSERT INTO loan_cashbook(`lname`, `loan_id`, `date`, `type`, `total_balance`, `loan_amount`) VALUES('$pname','$get_loan_id','$sanction_date','credit','$balance','$loan_amount')";
+          if(mysqli_query($conn,$ins_trans)){
+           header('Location:loans.php');
+    
+
+    }
+    else{
+      echo mysqli_error($conn);
+    }
+         }
+
+      }
+
+
+        
+
+        
 
     }
 
@@ -47,8 +68,32 @@ if (isset($_POST['add'])) {
     $kyc = false;
     $ins_party="INSERT INTO loan (`lname`,`kyc`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`,`total_balance`) VALUES ('$pname','$kyc','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration','$balance')";
 
+ $credit='credit';
     if(mysqli_query($conn,$ins_party)){
-      header('Location:loans.php');
+
+      $get_loan_id="SELECT `loan_id` FROM `loan` WHERE `contact_num`='$contact'";
+      $result=mysqli_query($conn,$get_loan_id) or die(mysqli_error($conn));
+      if(mysqli_num_rows($result)>0){
+         while($row=mysqli_fetch_assoc($result)){
+          $get_loan_id=$row['loan_id'];
+          echo"<script>console.log($get_loan_id)</script>";
+          $ins_trans ="INSERT INTO loan_cashbook(`lname`, `loan_id`, `date`, `type`, `total_balance`, `loan_amount`) VALUES('$pname','$get_loan_id','$sanction_date','credit','$balance','$loan_amount')";
+          if(mysqli_query($conn,$ins_trans)){
+           header('Location:loans.php');
+    
+
+    }
+    else{
+      echo mysqli_error($conn);
+    }
+         }
+
+      }
+
+
+        
+
+        
 
     }
 
