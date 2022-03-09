@@ -75,9 +75,14 @@
                 <i class="align-middle" data-feather="users"></i> <span class="align-middle">Agents</span>
               </a>
             </li>
+            <li class="sidebar-item <?= ($activePage == 'transactions') ? 'active':''; ?>">
+              <a class="sidebar-link" href="transactions.php">
+                <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Transactions</span>
+              </a>
+            </li>
             <li class="sidebar-item <?= ($activePage == 'reports') ? 'active':''; ?>">
               <a class="sidebar-link" href="reports.php">
-                <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Reports</span>
+                <i class="align-middle" data-feather="file"></i> <span class="align-middle">Reports</span>
               </a>
             </li>
 
