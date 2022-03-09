@@ -19,16 +19,18 @@ if (isset($_POST['add'])) {
   $f_letter_of_fname = $afirst_name[0];
   $l_letter_of_fname = $alast_name[0];
   $dob = mysqli_real_escape_string($conn, $_POST['dob']);
+  $num = mysqli_real_escape_string($conn, $_POST['contact']);
+
 
   
   if($kyc=='yes'){
     $adhaar_number = mysqli_real_escape_string($conn,$_POST['adhaar_number']);
     $pan_number = mysqli_real_escape_string($conn,$_POST['pan_number']);
     $kyc = true;
-    $ins_agent="INSERT INTO agent(aname,kyc,adhaar_number,pan_number,gender,dob) VALUES('$aname','$kyc','$adhaar_number','$pan_number','$gender','$dob' )";
+    $ins_agent="INSERT INTO agent(aname,kyc,adhaar_number,pan_number,gender,dob,contact_num) VALUES('$aname','$kyc','$adhaar_number','$pan_number','$gender','$dob','$num' )";
 
     if(mysqli_query($conn,$ins_agent)){
-      $q1="SELECT `sr_no_agent` FROM `agent` WHERE `aname`='$aname'";
+      $q1="SELECT `sr_no_agent` FROM `agent` WHERE `contact_num`='$num'";
       $get_sr=mysqli_query($conn,$q1);
 
       if(mysqli_num_rows($get_sr)>0){
@@ -39,7 +41,7 @@ if (isset($_POST['add'])) {
         }
       
         $sr_no_agent_new=$f_letter_of_fname.$l_letter_of_fname.$sr_no_agent;
-        $ins_agent_id = "UPDATE `agent` SET `agent_id`='$sr_no_agent_new' WHERE `aname`='$aname' ";        
+        $ins_agent_id = "UPDATE `agent` SET `agent_id`='$sr_no_agent_new' WHERE `contact_num`='$num' ";        
         echo "<script>console.log('$ins_agent_id');</script>";
 
         if(mysqli_query($conn,$ins_agent_id)){
@@ -53,10 +55,10 @@ if (isset($_POST['add'])) {
 
   elseif($kyc=="no"){
     $kyc = false;
-    $ins_agent="INSERT INTO agent(aname,kyc,gender,dob) VALUES('$aname','$kyc','$gender','$dob')";
+    $ins_agent="INSERT INTO agent(aname,kyc,gender,dob,contact_num) VALUES('$aname','$kyc','$gender','$dob','$num')";
 
     if(mysqli_query($conn,$ins_agent)){
-      $q1="SELECT `sr_no_agent` FROM `agent` WHERE `aname`='$aname'";
+      $q1="SELECT `sr_no_agent` FROM `agent` WHERE `contact_num`='$num'";
       $get_sr=mysqli_query($conn,$q1);
 
       if(mysqli_num_rows($get_sr)>0){
@@ -167,7 +169,7 @@ if (isset($_POST['add'])) {
                 </div>
                 <div class="w-50 mb-3">
                       <label  class="form-label">Contact number</label>
-                      <input type="phone" class="form-control" name=""  >
+                      <input type="phone" class="form-control" name="contact"  >
                     </div>
                   
                 </div>
