@@ -18,6 +18,8 @@ if (isset($_POST['add'])) {
   $occupation = mysqli_real_escape_string($conn, $_POST['occupation']);
   $description = mysqli_real_escape_string($conn, $_POST['description']);
   $loan_amount = mysqli_real_escape_string($conn, $_POST['lamount']);
+  $balance = -$loan_amount;
+
   $loan_intrest = mysqli_real_escape_string($conn, $_POST['lintrest']);
   $loan_duration = mysqli_real_escape_string($conn, $_POST['lduration']);
   $agentid = mysqli_real_escape_string($conn, $_POST['agentId']);
@@ -31,7 +33,7 @@ if (isset($_POST['add'])) {
     $adhaar_number = mysqli_real_escape_string($conn,$_POST['adhaar_number']);
     $pan_number = mysqli_real_escape_string($conn,$_POST['pan_number']);
     $kyc = true;
-    $ins_party="INSERT INTO loan (`lname`,`kyc`,`adhar_number`,`pan_card`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`) VALUES ('$pname','$kyc','$adhaar_number','$pan_number','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration')";
+    $ins_party="INSERT INTO loan (`lname`,`kyc`,`adhar_number`,`pan_card`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`,`total_balance`) VALUES ('$pname','$kyc','$adhaar_number','$pan_number','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration','$balance')";
 
     if(mysqli_query($conn,$ins_party)){
       header('Location:loans.php');
@@ -43,7 +45,7 @@ if (isset($_POST['add'])) {
 
   elseif($kyc=="no"){
     $kyc = false;
-    $ins_party="INSERT INTO loan (`lname`,`kyc`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`) VALUES ('$pname','$kyc','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration')";
+    $ins_party="INSERT INTO loan (`lname`,`kyc`,`address`,`city`,`agent_id`,`agent_commision`,`contact_num`,`loan_sanction_date`,`dob`,`occupation`,`discription`,`loan_amount`,`loan_interest`,`loan_duration`,`total_balance`) VALUES ('$pname','$kyc','$laddress','$city','$agentid','$agent_commission','$contact','$sanction_date','$dob','$occupation','$description','$loan_amount','$loan_intrest','$loan_duration','$balance')";
 
     if(mysqli_query($conn,$ins_party)){
       header('Location:loans.php');
