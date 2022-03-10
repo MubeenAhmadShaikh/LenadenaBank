@@ -132,16 +132,18 @@ if (isset($_POST['transaction'])) {
         while($row=mysqli_fetch_assoc($get_ball)){
           $get_bal=$row['total_balance'];
           $get_pname=$row['lname'];
+          $get_loan=$row['loan_amount'];
           echo"<script>console.log('$get_bal')</script>";
           echo"<script>console.log('$amounts')</script>";
           $new_amount=$get_bal+$amounts;
+          if($get_loan>$new_amount){
           echo"<script>console.log('$new_amount')</script>";
           $up_party_bal = "UPDATE `loan` SET `total_balance`='$new_amount' WHERE `loan_id`='$acc_no' ";
           $ins_transaction = "INSERT INTO loan_cashbook (`lname`,`loan_id`,`date`,`type`,`loan_amount`,`total_balance`) VALUES('$get_pname','$acc_no','$account_open_date','debit','$amounts','$new_amount')";
           if(mysqli_query($conn,$up_party_bal)and(mysqli_query($conn,$ins_transaction))){
             echo "<script>console.log('maza agaya');</script>";
 
-                    }
+                    }}
                   }
 
               }
