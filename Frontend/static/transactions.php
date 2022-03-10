@@ -144,6 +144,10 @@ if (isset($_POST['transaction'])) {
             echo "<script>console.log('maza agaya');</script>";
 
                     }}
+          else{
+            echo"<script>alert('overflow of loan_amount either paid full loan or paying invalid amount')</script>";
+
+          }
                   }
 
               }
