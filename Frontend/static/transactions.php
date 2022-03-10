@@ -80,40 +80,75 @@ if (isset($_POST['transaction'])) {
 
     else{
       if(mysqli_real_escape_string($conn,$_POST['trans_type']=='credit'))
-    {
-      echo "<script>console.log('credit');</script>";
-            $q1 = "SELECT `total_balance`,`pname` FROM `party` WHERE `account_number`='$acc_no'";
+      {
+        echo "<script>console.log('credit');</script>";
+              $q1 = "SELECT `total_balance`,`pname` FROM `party` WHERE `account_number`='$acc_no'";
 
-            $get_ball=mysqli_query($conn,$q1) or die(mysqli_error($conn));;
+              $get_ball=mysqli_query($conn,$q1) or die(mysqli_error($conn));;
 
-            $account_open_date=date("Y-m-d");
+              $account_open_date=date("Y-m-d");
 
-            if(mysqli_num_rows($get_ball)>0){
-                while($row=mysqli_fetch_assoc($get_ball)){
-                  $get_bal=$row['total_balance'];
-                  $get_pname=$row['pname'];
-                  echo"<script>console.log('$get_bal')</script>";
-                  echo"<script>console.log('$amounts')</script>";
-                 $new_amount=$get_bal+$amounts;
+              if(mysqli_num_rows($get_ball)>0){
+                  while($row=mysqli_fetch_assoc($get_ball)){
+                    $get_bal=$row['total_balance'];
+                    $get_pname=$row['pname'];
+                    echo"<script>console.log('$get_bal')</script>";
+                    echo"<script>console.log('$amounts')</script>";
+                   $new_amount=$get_bal+$amounts;
 
-                  echo"<script>console.log('$new_amount')</script>";
+                    echo"<script>console.log('$new_amount')</script>";
 
-                  $up_party_bal = "UPDATE `party` SET `total_balance`='$new_amount' WHERE `account_number`='$acc_no' ";
+                    $up_party_bal = "UPDATE `party` SET `total_balance`='$new_amount' WHERE `account_number`='$acc_no' ";
 
-                  $ins_transaction = "INSERT INTO party_cashbook (`pname`,`account_number`,`date`,`type`,`amount`,`total_balance`) VALUES('$get_pname','$acc_no','$account_open_date','debit','$amounts','$new_amount')";
+                    $ins_transaction = "INSERT INTO party_cashbook (`pname`,`account_number`,`date`,`type`,`amount`,`total_balance`) VALUES('$get_pname','$acc_no','$account_open_date','debit','$amounts','$new_amount')";
 
-                  if(mysqli_query($conn,$up_party_bal)and(mysqli_query($conn,$ins_transaction))){
-                    echo "<script>console.log('maza agaya');</script>";
+                    if(mysqli_query($conn,$up_party_bal)and(mysqli_query($conn,$ins_transaction))){
+                      echo "<script>console.log('maza agaya');</script>";
 
+                    }
                   }
-                }
 
-            }
+              }
 
 
-    }
+      }
     }
   }
+  else{
+      if(mysqli_real_escape_string($conn,$_POST['trans_type']=='credit')){
+        echo"<script>alert('cant debit on loan account')</script>";
+
+          }
+      
+      else{
+        echo "<script>console.log('credit');</script>";
+        $q1 = "SELECT `total_balance`,`lname` FROM `loan` WHERE `loan_id`='$acc_no'";
+
+        $get_ball=mysqli_query($conn,$q1) or die(mysqli_error($conn));
+
+        $account_open_date=date("Y-m-d");
+
+        if(mysqli_num_rows($get_ball)>0){
+        while($row=mysqli_fetch_assoc($get_ball)){
+          $get_bal=$row['total_balance'];
+          $get_pname=$row['lname'];
+          echo"<script>console.log('$get_bal')</script>";
+          echo"<script>console.log('$amounts')</script>";
+          $new_amount=$get_bal+$amounts;
+          echo"<script>console.log('$new_amount')</script>";
+          $up_party_bal = "UPDATE `loan` SET `total_balance`='$new_amount' WHERE `loan_id`='$acc_no' ";
+          $ins_transaction = "INSERT INTO loan_cashbook (`lname`,`loan_id`,`date`,`type`,`loan_amount`,`total_balance`) VALUES('$get_pname','$acc_no','$account_open_date','debit','$amounts','$new_amount')";
+          if(mysqli_query($conn,$up_party_bal)and(mysqli_query($conn,$ins_transaction))){
+            echo "<script>console.log('maza agaya');</script>";
+
+                    }
+                  }
+
+              }
+
+      }    
+
+}
 
  }
 ?>
