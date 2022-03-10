@@ -1,3 +1,16 @@
+<?php 
+  session_start(); 
+  include('include/connection.php');
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: sign_in.php');
+  }
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: sign_in.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +24,7 @@
 </head>
 <body>
 <?php 
+
         $activePage = basename($_SERVER['PHP_SELF'], ".php");
       
 ?>
@@ -87,8 +101,8 @@
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#">
-                <i class="align-middle" data-feather="rotate-ccw"></i> <span class="align-middle">Logout</span>
+              <a class="sidebar-link" type="submit" name="logout" href="index.php?logout='1'">
+                <i class="align-middle"  data-feather="rotate-ccw"></i> <span class="align-middle">Logout</span>
               </a>
             </li>
           </ul>
