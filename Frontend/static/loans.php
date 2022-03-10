@@ -84,13 +84,15 @@
                         ?>
 
                       <!--   <tr id="party1" > -->
-                        <tr>
-                          <td><?php echo $row['loan_id'];?></td>
+                        <tr id="party1">
+                          <td><?php echo $row['loan_id'];
+                            $GLOBALS['uniqueid']=$row['loan_id'];?></td>
                           <td><?php echo $row['lname']; ?></td>
                           <td><?php echo $row['loan_amount']; ?></td>
                           <td><?php echo $row['loan_interest'];?></td>
                           <td><?php echo $row['loan_duration'];?></td>
-                          <td><?php echo $row['agent_id'];?></td>
+                          <td><?php echo $row['agent_id']; ?> </td>
+                         
 
 
 
@@ -119,45 +121,61 @@
                     <h5 class="card-title mb-0">Car Loan</h5>
                   </div>
                   <div class="card-body">
-                    
+                 
+                  <?php
+                          $querry="SELECT * FROM `loan` where loan_id =$uniqueid";
+                           
+                          $result=mysqli_query($conn,$querry) or die(mysqli_error($conn));
 
+                          if(mysqli_num_rows($result)>0)
+                          {
+                            echo "<script>console.log('test1');</script>";                            
+                            while($row=mysqli_fetch_assoc($result)){
+                               echo "<script>console.log('hey');</script>";
+                              
+                        ?>
                     <table class="table table-sm  mb-4">
                       <tbody>
+                      
                         <tr>
                           <th>Loan Id</th>
-                          <td>L1</td>
+                          <td> <?php echo $row['loan_id'];?></td>
                         </tr>
+                        <?php 
+                      } }
+                      ?>
                         <tr>
+                        
                           <th>Serial Number</th>
-                          <td>101</td>
+                          <td></td>
                         </tr>
                         <tr>
                           <th>Name</th>
-                          <td>Car Loan</td>
+                          <td></td>
                         </tr>
                         <tr>
                           <th>Occupation</th>
-                          <td>Contractor</td>
+                          <td></td>
                         </tr>
                         <tr>
                           <th>Description</th>
-                          <td>Loan description will be mentioned here</td>
+                          <td></td>
                         </tr>
                         <tr>
                           <th>Amount</th>
-                          <td>200000</td>
+                          <td></td>
                         </tr>
                         <tr>
                           <th>Sanction date</th>
-                          <td>12/02/2020</td>
+                          <td></td>
                         </tr>
                         <tr>
                           <th>Duration</th>
-                          <td>2 years</td>
+                          <td></td>
                         </tr>
                         <tr>
                           <th>Interest</th>
-                          <td>10%</td>
+                          <td></td>
                         </tr>
                         
                         <tr>
@@ -166,37 +184,27 @@
                         </tr>
                         <tr>
                           <th>Agent Commission</th>
-                          <td>3%</td>
+                          <td></td>
                         </tr>
                         <tr>
                           <th>Phone</th>
-                          <td>+1234123123123</td>
+                          <td></td>
                         </tr>
                         <tr>
-                          <th>KYC Status</th>
-                          <td><span class="badge bg-success">Completed</span></td>
-                        </tr>
-                        <tr>
-                          <th>Adhaar Number</th>
-                          <td>222234444555</td>
-                        </tr>
-                        <tr>
-                          <th>PAN Number</th>
-                          <td>222234444555</td>
-                        </tr>
                         
                         <tr>
+
                           <th>City</th>
-                          <td>Mumbai</td>
+                          <td></td>
                         </tr>
                         <tr>
                           <th>Address</th>
-                          <td>12, A wing, Abc Apartment, xyz city,1111 </td>
+                          <td></td>
                         </tr>
                         
                       </tbody>
                     </table>
-
+                   
                     <strong>Recent Loans</strong>
 
                     <ul class="timeline mt-2 mb-0">
@@ -305,9 +313,9 @@
       </div>
     </div>
 
-    <script src="js/app.js"></script>
+    
     <script>
-      let party= document.getElementById('party1');
+      let party= document.querySelector('#party1');
       let partyTable= document.querySelector('.partyTable');
       let partyDetails= document.querySelector('.partyDetails');
       
@@ -327,3 +335,4 @@
       </script>
   </body>
 </html>
+    

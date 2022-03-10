@@ -95,16 +95,24 @@
               </a>
             </li>
             <li class="sidebar-item <?= ($activePage == 'reports') ? 'active':''; ?>">
-              <a class="sidebar-link" href="reports.php">
-                <i class="align-middle" data-feather="file"></i> <span class="align-middle">Reports</span>
-              </a>
+            <a href="#reports" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
+            <i class="align-middle" data-feather="map"></i> <span class="align-middle">Reports</span>
+			</a>
+            <ul id="reports" class="sidebar-dropdown list-styled collapse" data-bs-parent="#sidebar" style="">
+							<li class="sidebar-item"><a class="sidebar-link" href=""><i class="align-middle" data-feather="dollar-sign"></i>Loans</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href=""><i class="align-middle" data-feather="users"></i>Agents</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href=""><i class="align-middle" data-feather="user"></i>Party </a></li>
+						</ul>
             </li>
+
+
 
             <li class="sidebar-item">
               <a class="sidebar-link" type="submit" name="logout" href="index.php?logout='1'">
                 <i class="align-middle"  data-feather="rotate-ccw"></i> <span class="align-middle">Logout</span>
               </a>
             </li>
+            
           </ul>
         </div>
       </nav>
