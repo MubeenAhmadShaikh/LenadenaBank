@@ -99,9 +99,9 @@
             <i class="align-middle" data-feather="map"></i> <span class="align-middle">Reports</span>
 			</a>
             <ul id="reports" class="sidebar-dropdown list-styled collapse" data-bs-parent="#sidebar" style="">
-							<li class="sidebar-item"><a class="sidebar-link" href=""><i class="align-middle" data-feather="dollar-sign"></i>Loans</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href=""><i class="align-middle" data-feather="users"></i>Agents</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href=""><i class="align-middle" data-feather="user"></i>Party </a></li>
+							<li class="sidebar-item <?= ($activePage == 'reports_loans') ? 'active':''; ?>"><a class="sidebar-link" href="reports_loans.php"><i class="align-middle" data-feather="dollar-sign"></i>Loans</a></li>
+							<li class="sidebar-item <?= ($activePage == 'reports_agents') ? 'active':''; ?>"><a class="sidebar-link" href="reports_agents.php"><i class="align-middle" data-feather="users"></i>Agents</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="reports_party.php"><i class="align-middle" data-feather="user"></i>Party </a></li>
 						</ul>
             </li>
 
@@ -116,6 +116,6 @@
           </ul>
         </div>
       </nav>
-        <script src="../js/app.js"></script>
+      <script src="js/app.js"></script>
 </body>
 </html>
