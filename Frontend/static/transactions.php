@@ -26,6 +26,10 @@ if ($_SESSION['username']==false) {
 
     <link href="css/app.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+
+    <link href="css/select2.min.css" rel="stylesheet" type="text/css" /> 
+    <script src="js/jquery.min.js"></script> 
+    <script src="js/select2.min.js"></script>
   </head>
 <?php 
 if (isset($_POST['transaction'])) {
@@ -181,7 +185,7 @@ if (isset($_POST['transaction'])) {
                   <div class="row"> 
                     <div class="w-50 mb-3">
                         <label  class="form-label">Select Entity</label>
-                        <select class="form-select " aria-label="Default select example" name="entity">
+                        <select class="form-select " aria-label="Default select example" name="entity" id="entity">
                             <option selected>Select</option>
                             <option value="party">Party</option>
                             <option value="loan">Loan</option>
@@ -189,7 +193,7 @@ if (isset($_POST['transaction'])) {
                     </div>
                     <div class="w-50 mb-3">
                         <label  class="form-label ">Account Number</label>
-                        <input type="text" class="form-control input " name="acc_no" aria-describedby="emailHelp">
+                        <select class="form-select " aria-label="Default select example" name="acc_no" id="acc_no" ></select>
                     </div>
                     
                 </div>
@@ -203,8 +207,8 @@ if (isset($_POST['transaction'])) {
                     </div>
                     <div class="w-50 mb-3">
                         <label  class="form-label">Transaction Type</label>
-                          <select class="form-select" aria-label="Default select example" name="trans_type">
-                            <option selected>Select</option>
+                          <select class="form-select" aria-label="Default select example" name="trans_type" id="trans_type">
+                            <option selected value="trans_type_null">Select</option>
                             <option value="debit">Debit</option>
                             <option value="credit">Credit</option>
                           </select>
@@ -255,5 +259,60 @@ if (isset($_POST['transaction'])) {
 }  
     </script> -->
     <script src="js/app.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#acc_no").select2();
+    });
+    $('#entity').on('change', function () {
+          var selectVal = $("#entity option:selected").val();
+          if(selectVal=="party"){
+            $("option[value='debit']").attr("disabled",false);
+            $('#trans_type').prop('selectedIndex', '0');
+            $("#acc_no").empty();
+            $.ajax({
+              url : 'include/acc_no_party.php',
+              type : 'POST',
+              success : function(result){ 
+                  var obj = jQuery.parseJSON(result);
+                  console.log(obj);
+                  mySelect = document.getElementById('acc_no');
+                    $("#acc_no").empty();
+                    for(var i=0;i<obj.length;i++){
+                      myOption = document.createElement("option");
+                      myOption.value = obj[i][1];
+                      myOption.text = obj[i];
+                      mySelect.appendChild(myOption);
+                    }
+              }
+            });
+          }
+          else if(selectVal=="loan"){
+            $("option[value='debit']").attr("disabled", "disabled");
+            $('#trans_type').prop('selectedIndex', '0');
+            $("#acc_no").empty();
+            $.ajax({
+              url : 'include/acc_no_loan.php',
+              type : 'POST',
+              success : function(result){ 
+                  var obj = jQuery.parseJSON(result);
+                  console.log(obj);
+                  mySelect = document.getElementById('acc_no');
+                    $("#acc_no").empty();
+                    for(var i=0;i<obj.length;i++){
+                      myOption = document.createElement("option");
+                      myOption.value = obj[i][1];
+                      myOption.text = obj[i];
+                      mySelect.appendChild(myOption);
+                    }
+              }
+            });
+          }
+          else{
+            $("option[value='debit']").attr("disabled",false);
+            $('#trans_type').prop('selectedIndex', '0');
+            $("#acc_no").empty();
+          }
+        });
+    </script>  
   </body>
 </html>
