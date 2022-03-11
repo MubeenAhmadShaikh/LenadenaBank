@@ -116,14 +116,14 @@ if (isset($_POST['transaction'])) {
     }
   }
   else{
-      if(mysqli_real_escape_string($conn,$_POST['trans_type']=='credit')){
+      if(mysqli_real_escape_string($conn,$_POST['trans_type']=='debit')){
         echo"<script>alert('cant debit on loan account')</script>";
 
           }
       
       else{
         echo "<script>console.log('credit');</script>";
-        $q1 = "SELECT `total_balance`,`lname` FROM `loan` WHERE `loan_id`='$acc_no'";
+        $q1 = "SELECT `loan_amount`, `total_balance`,`lname` FROM `loan` WHERE `loan_id`='$acc_no'";
 
         $get_ball=mysqli_query($conn,$q1) or die(mysqli_error($conn));
 
@@ -136,8 +136,10 @@ if (isset($_POST['transaction'])) {
           $get_loan=$row['loan_amount'];
           echo"<script>console.log('$get_bal')</script>";
           echo"<script>console.log('$amounts')</script>";
-          $new_amount=$get_bal+$amounts;
-          if($get_loan>$new_amount){
+
+          if($get_bal*-1>=$amounts){
+            $new_amount=$get_bal+$amounts;
+
           echo"<script>console.log('$new_amount')</script>";
           $up_party_bal = "UPDATE `loan` SET `total_balance`='$new_amount' WHERE `loan_id`='$acc_no' ";
           $ins_transaction = "INSERT INTO loan_cashbook (`lname`,`loan_id`,`date`,`type`,`loan_amount`,`total_balance`) VALUES('$get_pname','$acc_no','$account_open_date','debit','$amounts','$new_amount')";
