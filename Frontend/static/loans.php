@@ -43,6 +43,7 @@
                   <div class="card-header pb-0">
                     <div class="card-actions float-end">
                       <div class="dropdown position-relative">
+                      <input id="myInput" type="text" placeholder="Search..">
                       <a class="btn btn-primary" href="add_loan.php" role="button"><i class="align-middle" data-feather="plus"></i>Add Loans</a>
 
                         <div class="dropdown-menu dropdown-menu-end">
@@ -58,8 +59,6 @@
                     <table class="table table-striped" style="width: 100%" id="test">
                       <thead>
                         <tr >
-                          
-
 											<th>Id</th>
 											<th>Name</th>
 											<th>Amount</th>
@@ -69,7 +68,7 @@
 											<th>Action</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="test2">
                        <!--<tr id="party1"> -->
                        <?php
                           $querry="SELECT * FROM `loan`";
@@ -128,7 +127,7 @@
                 <div class="card">
                   <div class="card-header">
                     
-                    <h5 class="card-title mb-0">Car Loan</h5>
+                    <h5 class="card-title mb-0">Loan Details</h5>
                   </div>
                   <div class="card-body">
                     <table class="table table-sm  mb-4">
@@ -339,6 +338,16 @@
               }
           });
       });
+  </script>
+  <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#test2 tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
   </script>
   </body>
 </html>
