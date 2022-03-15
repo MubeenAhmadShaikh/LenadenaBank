@@ -24,6 +24,7 @@
 	<!-- CDN till demo -->
     <link href="css/app.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script> 
   </head>
 
   <body>
@@ -41,6 +42,7 @@
                   <div class="card-header pb-0">
                     <div class="card-actions float-end">
                       <div class="dropdown position-relative">
+                      <input id="myInput" type="text" placeholder="Search..">
                       <a class="btn btn-primary" href="add_party.php" role="button"><i class="align-middle" data-feather="plus"></i>Add Party</a>
 
                         <div class="dropdown-menu dropdown-menu-end">
@@ -53,19 +55,19 @@
                     <h5 class="card-title mb-0">Party</h5>
                   </div>
                   <div class="card-body">
-                    <table class="table table-striped" style="width: 100%">
+                    <table class="table table-striped" style="width: 100%" id="test">
                       <thead>
                         <tr >
                           
 
-                          <th>Acc. No.</th>
+                      <th>Acc. No.</th>
 											<th>Name</th>
 											<th>Balance</th>
 											<th>Agent</th>
 											<th>Actions</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="test2">
                         <?php
                           $querry="SELECT * FROM `party`";
                            
@@ -80,11 +82,24 @@
                         ?>
 
                       <!--   <tr id="party1" > -->
-                        <tr>
+                      <tr class="party" id="<?php echo $row['account_number']; ?>">
                           <td><?php echo $row['account_number'];?></td>
                           <td><?php echo $row['pname']; ?></td>
                           <td><?php echo $row['total_balance']; ?></td>
                           <td><?php echo $row['agent_id'];?></td>
+                          <td class="d-none" ><?php echo $row['city']; ?></td>
+                          <td class="d-none" ><?php echo $row['kyc']; ?></td>
+                          <td class="d-none" ><?php echo $row['adhar_number']; ?></td>
+                          <td class="d-none" ><?php echo $row['pan_card']; ?></td>
+                          <td class="d-none" ><?php echo $row['address']; ?></td>
+                          <td class="d-none" ><?php echo $row['agent_commision']; ?></td>
+                          <td class="d-none" ><?php echo $row['contact_num']; ?></td>
+                          <td class="d-none" ><?php echo $row['dob']; ?></td>
+                          <td class="d-none" ><?php echo $row['occupation']; ?></td>
+                          <td class="d-none" ><?php echo $row['discription']; ?></td>
+                          <td class="d-none" ><?php echo $row['account_opening_date']; ?></td>
+                          <td class="d-none" ><?php echo $row['interest']; ?></td>
+                          <td class="d-none" ><?php echo $row['gender']; ?></td>
 
                             <td class="table-action d-flex justify-content-around">
                               <a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
@@ -98,19 +113,89 @@
                       </tbody>
                     </table>
 
-                    <strong>Recent Loans</strong>
-
-                    <ul class="timeline mt-2 mb-0">
-                      <li class="timeline-item">
-                        <strong>90 lakhs</strong>
-                        <span class="float-end text-muted text-sm">1 month ago</span>
-                        <p>Loan description will be mentioned here</p>
-                      </li>
-                      <li class="timeline-item">
-                        <strong>20 lakhs</strong>
-                        <span class="float-end text-muted text-sm">3 month ago</span>
-                        <p>Loan description will be mentioned here</p>
-                      </li>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 d-none partyDetails">
+                <div class="card">
+                  <div class="card-header">
+                    
+                    <h5 class="card-title mb-0">Party Details</h5>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-sm  mb-4">
+                      <tbody>
+                      
+                        <tr>
+                          <th>Account Number</th>
+                          <td id="account_number"></td>
+                        </tr>
+                        <tr>
+                          <th>Name</th>
+                          <td id="pname"></td>
+                        </tr>
+                        <tr>
+                          <th>Phone</th>
+                          <td id="contact"></td>
+                        </tr>
+                        <tr>
+                          <th>Gender</th>
+                          <td id="gender"></td>
+                        </tr>
+                        <tr>
+                          <th>Date Of Birth</th>
+                          <td id="dob"></td>
+                        </tr>
+                        <tr>
+                          <th>Address</th>
+                          <td id="address"></td>
+                        </tr>
+                        <tr>
+                          <th>KYC</th>
+                          <td id="kyc"></td>
+                        </tr>
+                        <tr>
+                          <th>Adhaar Number</th>
+                          <td id="adhaar"></td>
+                        </tr>
+                        <tr>
+                          <th>Pan Number</th>
+                          <td id="pan"></td>
+                        </tr>
+                        <tr>
+                          <th>City</th>
+                          <td id="scity"></td>
+                        </tr>
+                        <tr>
+                          <th>Occupation</th>
+                          <td id="occupation"></td>
+                        </tr>
+                        <tr>
+                          <th>Description</th>
+                          <td id="description"></td>
+                        </tr>
+                        <tr>
+                          <th>Current Balance</th>
+                          <td id="total_balance"></td>
+                        </tr>
+                        <tr>
+                          <th>Interest</th>
+                          <td id="party_interest"></td>
+                        </tr>
+                        <tr>
+                          <th>Account Opened On</th>
+                          <td id="acc_open_date"></td>
+                        </tr>
+                        <tr>
+                          <th>Agent</th>
+                          <td id="agent_name"></td>
+                        </tr>
+                        <tr>
+                          <th>Agent Commission</th>
+                          <td id="agent_com"></td>
+                        </tr>                 
+                      </tbody>
+                    </table>
                       
                     </ul>
                   </div>
@@ -208,23 +293,50 @@
 
     <script src="js/app.js"></script>
     <script>
-      let party= document.getElementById('party1');
-      let partyTable= document.querySelector('.partyTable');
-      let partyDetails= document.querySelector('.partyDetails');
-      
-      party.addEventListener('click',abc)
-      function abc(){
-        if(partyTable.classList.contains('col-xl-12')){
-          partyTable.classList.remove('col-xl-12');
-          partyTable.classList.add('col-xl-8');
-          partyDetails.classList.remove('d-none');
-        }else{
-          partyTable.classList.add('col-xl-12');
-          partyTable.classList.remove('col-xl-8');
-          partyDetails.classList.add('d-none');
-          
-        }
-      }
-      </script>
+    $(function() {
+      var bid, trid;
+        $('#test tr').click(function() {
+            trid = $(this).attr('id');
+            document.getElementById('account_number').innerHTML=$("#"+trid+" td:nth-child(1)").text();
+            document.getElementById('pname').innerHTML=$("#"+trid+" td:nth-child(2)").text();
+            document.getElementById('total_balance').innerHTML=$("#"+trid+" td:nth-child(3)").text();
+            document.getElementById('agent_name').innerHTML=$("#"+trid+" td:nth-child(4)").text();
+            document.getElementById('scity').innerHTML=$("#"+trid+" td:nth-child(5)").text();
+            document.getElementById('kyc').innerHTML=$("#"+trid+" td:nth-child(6)").text();
+            document.getElementById('adhaar').innerHTML=$("#"+trid+" td:nth-child(7)").text();
+            document.getElementById('pan').innerHTML=$("#"+trid+" td:nth-child(8)").text();
+            document.getElementById('address').innerHTML=$("#"+trid+" td:nth-child(9)").text();
+            document.getElementById('agent_com').innerHTML=$("#"+trid+" td:nth-child(10)").text();
+            document.getElementById('contact').innerHTML=$("#"+trid+" td:nth-child(11)").text();
+            document.getElementById('dob').innerHTML=$("#"+trid+" td:nth-child(12)").text();
+            document.getElementById('occupation').innerHTML=$("#"+trid+" td:nth-child(13)").text();
+            document.getElementById('description').innerHTML=$("#"+trid+" td:nth-child(14)").text();
+            document.getElementById('acc_open_date').innerHTML=$("#"+trid+" td:nth-child(15)").text();
+            document.getElementById('party_interest').innerHTML=$("#"+trid+" td:nth-child(16)").text();
+            document.getElementById('gender').innerHTML=$("#"+trid+" td:nth-child(17)").text();
+            let partyTable= document.querySelector('.partyTable');
+            let partyDetails= document.querySelector('.partyDetails');
+              if(partyTable.classList.contains('col-xl-12')){
+                partyTable.classList.remove('col-xl-12');
+                partyTable.classList.add('col-xl-8');
+                partyDetails.classList.remove('d-none');
+              }else{
+                partyTable.classList.add('col-xl-12');
+                partyTable.classList.remove('col-xl-8');
+                partyDetails.classList.add('d-none');
+              }
+          });
+      });
+  </script>
+  <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#test2 tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
   </body>
 </html>
