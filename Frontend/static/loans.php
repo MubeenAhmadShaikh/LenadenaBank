@@ -303,6 +303,7 @@
     </div>
 
   <script>
+    var flag;
     $(function() {
       var bid, trid;
         $('#test tr').click(function() {
@@ -327,11 +328,13 @@
             document.getElementById('total_balance').innerHTML=$("#"+trid+" td:nth-child(18)").text();
             let partyTable= document.querySelector('.partyTable');
             let partyDetails= document.querySelector('.partyDetails');
-              if(partyTable.classList.contains('col-xl-12')){
+              if(flag!=trid){
+                flag=trid;
                 partyTable.classList.remove('col-xl-12');
                 partyTable.classList.add('col-xl-8');
                 partyDetails.classList.remove('d-none');
-              }else{
+              }else if(flag==trid){
+                flag=null;
                 partyTable.classList.add('col-xl-12');
                 partyTable.classList.remove('col-xl-8');
                 partyDetails.classList.add('d-none');

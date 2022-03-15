@@ -101,9 +101,9 @@
                           <td class="d-none" ><?php echo $row['interest']; ?></td>
                           <td class="d-none" ><?php echo $row['gender']; ?></td>
 
-                            <td class="table-action d-flex justify-content-around">
-                              <a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-                              <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
+                            <td class="d-flex justify-content">
+                              <a href="#" class="p-2" data-bs-toggle="modal" data-bs-target="#editModal" onclick="dataFetch()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
+                              <a href="#" class="p-2 text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
                             </td>
                           
                       <?php 
@@ -285,6 +285,104 @@
     </div>
   </div>
 </div>
+
+<div class="modal" id="editModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Party</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <table class="table table-sm  mb-4">
+                      <tbody>
+                        <tr>
+                          <th>Account Number</th>
+                          <td id="uaccount_number"></td>
+                        </tr>
+                        <tr>
+                          <th>Name</th>
+                          <td><input type="text" id="upname"></td>
+                        </tr>
+                        <tr>
+                          <th>Phone</th>
+                          <td id="ucontact"></td>
+                        </tr>
+                        <tr>
+                          <th>Gender</th>
+                          <td id="ugender"></td>
+                        </tr>
+                        <tr>
+                          <th>Date Of Birth</th>
+                          <td id="udob"></td>
+                        </tr>
+                        <tr>
+                          <th>Address</th>
+                          <td id="uaddress"></td>
+                        </tr>
+                        <tr>
+                          <th>KYC</th>
+                          <td id="ukyc"></td>
+                        </tr>
+                        <tr>
+                          <th>Adhaar Number</th>
+                          <td id="uadhaar"></td>
+                        </tr>
+                        <tr>
+                          <th>Pan Number</th>
+                          <td id="upan"></td>
+                        </tr>
+                        <tr>
+                          <th>City</th>
+                          <td id="uscity"></td>
+                        </tr>
+                        <tr>
+                          <th>Occupation</th>
+                          <td id="uoccupation"></td>
+                        </tr>
+                        <tr>
+                          <th>Description</th>
+                          <td id="udescription"></td>
+                        </tr>
+                        <tr>
+                          <th>Current Balance</th>
+                          <td id="utotal_balance"></td>
+                        </tr>
+                        <tr>
+                          <th>Interest</th>
+                          <td id="uparty_interest"></td>
+                        </tr>
+                        <tr>
+                          <th>Account Opened On</th>
+                          <td id="uacc_open_date"></td>
+                        </tr>
+                        <tr>
+                          <th>Agent</th>
+                          <td id="uagent_name"></td>
+                        </tr>
+                        <tr>
+                          <th>Agent Commission</th>
+                          <td id="uagent_com"></td>
+                        </tr>                 
+                      </tbody>
+                    </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" name="delete" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
         </main>
 
         <?php include ('include/footer.php')?>
@@ -293,40 +391,66 @@
 
     <script src="js/app.js"></script>
     <script>
-    $(function() {
       var bid, trid;
-        $('#test tr').click(function() {
-            trid = $(this).attr('id');
-            document.getElementById('account_number').innerHTML=$("#"+trid+" td:nth-child(1)").text();
-            document.getElementById('pname').innerHTML=$("#"+trid+" td:nth-child(2)").text();
-            document.getElementById('total_balance').innerHTML=$("#"+trid+" td:nth-child(3)").text();
-            document.getElementById('agent_name').innerHTML=$("#"+trid+" td:nth-child(4)").text();
-            document.getElementById('scity').innerHTML=$("#"+trid+" td:nth-child(5)").text();
-            document.getElementById('kyc').innerHTML=$("#"+trid+" td:nth-child(6)").text();
-            document.getElementById('adhaar').innerHTML=$("#"+trid+" td:nth-child(7)").text();
-            document.getElementById('pan').innerHTML=$("#"+trid+" td:nth-child(8)").text();
-            document.getElementById('address').innerHTML=$("#"+trid+" td:nth-child(9)").text();
-            document.getElementById('agent_com').innerHTML=$("#"+trid+" td:nth-child(10)").text();
-            document.getElementById('contact').innerHTML=$("#"+trid+" td:nth-child(11)").text();
-            document.getElementById('dob').innerHTML=$("#"+trid+" td:nth-child(12)").text();
-            document.getElementById('occupation').innerHTML=$("#"+trid+" td:nth-child(13)").text();
-            document.getElementById('description').innerHTML=$("#"+trid+" td:nth-child(14)").text();
-            document.getElementById('acc_open_date').innerHTML=$("#"+trid+" td:nth-child(15)").text();
-            document.getElementById('party_interest').innerHTML=$("#"+trid+" td:nth-child(16)").text();
-            document.getElementById('gender').innerHTML=$("#"+trid+" td:nth-child(17)").text();
-            let partyTable= document.querySelector('.partyTable');
-            let partyDetails= document.querySelector('.partyDetails');
-              if(partyTable.classList.contains('col-xl-12')){
-                partyTable.classList.remove('col-xl-12');
-                partyTable.classList.add('col-xl-8');
-                partyDetails.classList.remove('d-none');
-              }else{
-                partyTable.classList.add('col-xl-12');
-                partyTable.classList.remove('col-xl-8');
-                partyDetails.classList.add('d-none');
-              }
-          });
-      });
+      function dataFetch(){
+        document.getElementById('account_number').innerHTML=$("#"+trid+" td:nth-child(1)").text();
+        document.getElementById('pname').innerHTML=$("#"+trid+" td:nth-child(2)").text();
+        document.getElementById('total_balance').innerHTML=$("#"+trid+" td:nth-child(3)").text();
+        document.getElementById('agent_name').innerHTML=$("#"+trid+" td:nth-child(4)").text();
+        document.getElementById('scity').innerHTML=$("#"+trid+" td:nth-child(5)").text();
+        document.getElementById('kyc').innerHTML=$("#"+trid+" td:nth-child(6)").text();
+        document.getElementById('adhaar').innerHTML=$("#"+trid+" td:nth-child(7)").text();
+        document.getElementById('pan').innerHTML=$("#"+trid+" td:nth-child(8)").text();
+        document.getElementById('address').innerHTML=$("#"+trid+" td:nth-child(9)").text();
+        document.getElementById('agent_com').innerHTML=$("#"+trid+" td:nth-child(10)").text();
+        document.getElementById('contact').innerHTML=$("#"+trid+" td:nth-child(11)").text();
+        document.getElementById('dob').innerHTML=$("#"+trid+" td:nth-child(12)").text();
+        document.getElementById('occupation').innerHTML=$("#"+trid+" td:nth-child(13)").text();
+        document.getElementById('description').innerHTML=$("#"+trid+" td:nth-child(14)").text();
+        document.getElementById('acc_open_date').innerHTML=$("#"+trid+" td:nth-child(15)").text();
+        document.getElementById('party_interest').innerHTML=$("#"+trid+" td:nth-child(16)").text();
+        document.getElementById('gender').innerHTML=$("#"+trid+" td:nth-child(17)").text();
+        
+
+        document.getElementById('uaccount_number').innerHTML=$("#"+trid+" td:nth-child(1)").text();
+        document.getElementById('upname').value=$("#"+trid+" td:nth-child(2)").text();
+        document.getElementById('utotal_balance').innerHTML=$("#"+trid+" td:nth-child(3)").text();
+        document.getElementById('uagent_name').innerHTML=$("#"+trid+" td:nth-child(4)").text();
+        document.getElementById('uscity').innerHTML=$("#"+trid+" td:nth-child(5)").text();
+        document.getElementById('ukyc').innerHTML=$("#"+trid+" td:nth-child(6)").text();
+        document.getElementById('uadhaar').innerHTML=$("#"+trid+" td:nth-child(7)").text();
+        document.getElementById('upan').innerHTML=$("#"+trid+" td:nth-child(8)").text();
+        document.getElementById('uaddress').innerHTML=$("#"+trid+" td:nth-child(9)").text();
+        document.getElementById('uagent_com').innerHTML=$("#"+trid+" td:nth-child(10)").text();
+        document.getElementById('ucontact').innerHTML=$("#"+trid+" td:nth-child(11)").text();
+        document.getElementById('udob').innerHTML=$("#"+trid+" td:nth-child(12)").text();
+        document.getElementById('uoccupation').innerHTML=$("#"+trid+" td:nth-child(13)").text();
+        document.getElementById('udescription').innerHTML=$("#"+trid+" td:nth-child(14)").text();
+        document.getElementById('uacc_open_date').innerHTML=$("#"+trid+" td:nth-child(15)").text();
+        document.getElementById('uparty_interest').innerHTML=$("#"+trid+" td:nth-child(16)").text();
+        document.getElementById('ugender').innerHTML=$("#"+trid+" td:nth-child(17)").text();
+      }
+      var flag;
+      $(function() {
+          $('#test tr').click(function() {
+              trid = $(this).attr('id');
+              dataFetch();
+              let partyTable= document.querySelector('.partyTable');
+              let partyDetails= document.querySelector('.partyDetails');
+                if(flag!=trid){
+                  flag=trid;
+                  partyTable.classList.remove('col-xl-12');
+                  partyTable.classList.add('col-xl-8');
+                  partyDetails.classList.remove('d-none');
+                }else if(flag==trid){
+                  flag=null;
+                  partyTable.classList.add('col-xl-12');
+                  partyTable.classList.remove('col-xl-8');
+                  partyDetails.classList.add('d-none');
+                }
+            });
+        });
+      
   </script>
   <script>
     $(document).ready(function(){

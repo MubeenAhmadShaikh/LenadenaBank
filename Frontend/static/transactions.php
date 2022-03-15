@@ -232,12 +232,92 @@ if (isset($_POST['transaction'])) {
               
             <h1 class="h3 mb-3">Recent Transactions</h1>
             <div class="row">
-              <div class="col-12">
+              <div class="col-6">
                 <div class="card">
-                <h1 class="h3 m-3">Nope</h1>
+                <h1 class="h4 m-3">Party Transactions</h1>
+                <table class="table">
+									<thead>
+										<tr>
+											<th >Name</th>
+											<th >Account Number</th>
+											<th >Date</th>
+											<th >Type</th>
+											<th >Amount</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+											<?php
+												$querry="SELECT * FROM `party_cashbook` ORDER by date DESC Limit 5;";
+												 
+												$result=mysqli_query($conn,$querry);
 
-            </div>
-            </div>
+												if(mysqli_num_rows($result)>0)
+												{
+												  echo "<script>console.log('test1');</script>";
+												
+												while($row=mysqli_fetch_assoc($result)){
+													 echo "<script>console.log('hey');</script>";
+
+												?>	
+												<tr>
+                        <td><?php echo $row['pname']; ?></td>
+												<td><?php echo $row['account_number'];?></td>
+												<td><?php echo $row['date']; ?></td>
+                        <td><?php echo $row['type']; ?></td>
+												<td><?php echo $row['amount']; ?></td>
+											<?php 
+											} }
+											?>
+										</tr>
+										
+									</tbody>
+								</table>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                <h1 class="h4 m-3">Loan Transactions</h1>
+                <table class="table">
+									<thead>
+										<tr>
+											<th >Name</th>
+											<th >Account Number</th>
+											<th >Date</th>
+											<th >Amount Recived</th>
+											<th >Amount Pending</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+											<?php
+												$querry="SELECT * FROM `loan_cashbook` ORDER by date DESC Limit 5;";
+												 
+												$result=mysqli_query($conn,$querry);
+
+												if(mysqli_num_rows($result)>0)
+												{
+												  echo "<script>console.log('test1');</script>";
+												
+												while($row=mysqli_fetch_assoc($result)){
+													 echo "<script>console.log('hey');</script>";
+
+												?>	
+												<tr>
+                        <td><?php echo $row['lname']; ?></td>
+												<td><?php echo $row['loan_id'];?></td>
+												<td><?php echo $row['date']; ?></td>
+                        <td><?php echo $row['loan_amount']; ?></td>
+                        <td><?php echo $row['total_balance']; ?></td>
+											<?php 
+											} }
+											?>
+										</tr>
+										
+									</tbody>
+								</table>
+                </div>
+              </div>
             </div>
         </div>
         </main>

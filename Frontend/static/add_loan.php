@@ -42,7 +42,7 @@ if (isset($_POST['add'])) {
          while($row=mysqli_fetch_assoc($result)){
           $get_loan_id=$row['loan_id'];
           echo"<script>console.log($get_loan_id)</script>";
-          $ins_trans ="INSERT INTO loan_cashbook(`lname`, `loan_id`, `date`, `type`, `total_balance`, `loan_amount`) VALUES('$pname','$get_loan_id','$sanction_date','credit','$balance','$loan_amount')";
+          $ins_trans ="INSERT INTO loan_cashbook(`lname`, `loan_id`, `date`, `type`, `total_balance`, `loan_amount`) VALUES('$pname','$get_loan_id','$sanction_date','credit','$balance',0)";
           if(mysqli_query($conn,$ins_trans)){
            header('Location:loans.php');
     
