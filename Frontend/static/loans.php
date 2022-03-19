@@ -105,9 +105,9 @@
                           <td class="d-none" ><?php echo $row['loan_sanction_date']; ?></td>
                           <td class="d-none" ><?php echo $row['total_balance']; ?></td>
 
-                            <td class="table-action d-flex justify-content-around">
-                              <a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-                              <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
+                            <td class="d-flex justify-content">
+                              <a href="#" class="p-2" data-bs-toggle="modal" data-bs-target="#editModal" onclick="dataFetch()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
+                              <a href="#" class="p-2 text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
                             </td>
                           
                       <?php 
@@ -216,60 +216,7 @@
           </div>
         </main>
 
-        <!-- <main class="content">
-          <div class="container-fluid p-0">
-            <div class="d-flex flex-row justify-content-between">
-
-              <h1 class="h3 mb-3">Party</h1>
-              <div>
-
-                <a class="btn btn-primary" href="add_party.php" role="button"><i class="align-middle" data-feather="plus"></i>Add Party</a>
-              </div>
-            </div>
-		
-            <div class="row">
-						<div class="col-12 col-xl-12">
-							<div class="card">
-								
-								<table class="table">
-									<thead>
-										<tr>
-											<th>Acc. No.</th>
-											<th>Name</th>
-											<th>Balance</th>
-											<th>Agent Id</th>
-											<th>Contact</th>
-											<th >Acc. Opening date</th>
-											<th class="d-none d-md-table-cell" >Date of Birth</th>
-											<th>Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-										
-												
-												<tr>
-													<td>123</td>
-													<td>Abc</td>
-													<td>Male</td>
-                          <td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
-                          <td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
-                          <td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
-                          <td >12/2/2021</td>
-															<td class="table-action d-flex justify-content-around">
-																<a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-																<a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
-																
-														</td>
-													
-											
-										</tr>
-										
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-          </div> -->
+        
 		  
 		  <!-- Modal -->
 <div class="modal" id="myModal">
@@ -284,13 +231,144 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        Removing Loan will remove all its details and data that cannot be retrieved please confirm to delete or cancel
+        Removing party will remove all its details and data that cannot be retrieved please confirm to delete or cancel
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" name="delete" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+        <button type="button" name="delete" class="btn btn-danger" data-bs-dismiss="modal" onclick="deleteDetails()">Delete</button>
         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="editModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Party</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <table class="table table-sm  mb-4">
+                      <tbody>
+                      <tr>
+                          <th>Loan Id</th>
+                          <td id="uloan_id"></td>
+                        </tr>
+                        <tr>
+                          <th>Name</th>
+                          <td><input type="text" class="form-control" id="ulname"></td>
+                        </tr>
+                        <tr>
+                          <th>Phone</th>
+                          <td id="ucontact"></td>
+                        </tr>
+                        <tr>
+                          <th>Date Of Birth</th>
+                          <td ><input type="date" class="form-control" id="udob"></td>
+                        </tr>
+                        <tr>
+                          <th>Address</th>
+                          <td ><textarea class="form-control" id="uaddress" rows="3"></textarea></td>
+                        </tr>
+                        <tr>
+                          <th>KYC</th>
+                          <td >
+                            <select class="form-select" aria-label="Default select example" name="kyc" id="ukyc">
+                              <option selected>Select KYC Status</option>
+                              <option value="1">Yes</option>
+                              <option value="0">No</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Adhaar Number</th>
+                          <td ><input type="text" class="form-control" id="uadhaar"></td>
+                        </tr>
+                        <tr>
+                          <th>Pan Number</th>
+                          <td ><input type="text" class="form-control" id="upan"></td>
+                        </tr>
+                        <tr>
+                          <th>City</th>
+                          <td ><input type="text" class="form-control" id="uscity"></td>
+                        </tr>
+                        <tr>
+                          <th>Occupation</th>
+                          <td ><input type="text" class="form-control" id="uoccupation"></td>
+                        </tr>
+                        <tr>
+                          <th>Description</th>
+                          <td ><textarea class="form-control" id="udescription" rows="3"></textarea></td>
+                        </tr>
+                        <tr>
+                          <th>Loan Amount</th>
+                          <td id="uloan_amount"></td>
+                        </tr>
+                        <tr>
+                          <th>Pending Amount</th>
+                          <td id="upending_amount"></td>
+                        </tr>
+                        <tr>
+                          <th>Loan Interest</th>
+                          <td ><input type="text" class="form-control" id="uloan_interest"></td>
+                        </tr>
+                        <tr>
+                          <th>Sanction Date</th>
+                          <td id="usanction_date"></td>
+                        </tr>
+                        <tr>
+                          <th>Loan Duration</th>
+                          <td><input type="text" class="form-control" id="uloan_duration"></td>
+                        </tr>
+                        <tr>
+                          <th>Agent</th>
+                          <td id="uagent_name"></td>
+                        </tr>
+                        <tr>
+                          <th>Agent Commission</th>
+                          <td id="uagent_com"></td>
+                        </tr>                 
+                      </tbody>
+                    </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" name="delete" class="btn btn-success" data-bs-dismiss="confirmModal" data-bs-toggle="modal" data-bs-target="#confirmModal">Update</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="confirmModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Confirm</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="editModal" data-bs-toggle="modal" data-bs-target="#editModal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Are you sure you want to update the party details...
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="updateLoan()">Update</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="editModal" data-bs-toggle="modal" data-bs-target="#editModal">Cancel</button>
       </div>
 
     </div>
@@ -304,10 +382,11 @@
 
   <script>
     var flag;
+    var bid, trid;
     $(function() {
-      var bid, trid;
         $('#test tr').click(function() {
             trid = $(this).attr('id');
+            //Document populating Side Card
             document.getElementById('Loan_Id').innerHTML=$("#"+trid+" td:nth-child(1)").text();
             document.getElementById('Name').innerHTML=$("#"+trid+" td:nth-child(2)").text();
             document.getElementById('contact').innerHTML=$("#"+trid+" td:nth-child(13)").text();
@@ -326,6 +405,30 @@
             document.getElementById('agent_name').innerHTML=$("#"+trid+" td:nth-child(6)").text();
             document.getElementById('agent_com').innerHTML=$("#"+trid+" td:nth-child(12)").text();
             document.getElementById('total_balance').innerHTML=$("#"+trid+" td:nth-child(18)").text();
+
+
+            //Document populating update modal
+            document.getElementById('uloan_id').innerHTML=$("#"+trid+" td:nth-child(1)").text();
+            document.getElementById('ulname').value=$("#"+trid+" td:nth-child(2)").text();
+            document.getElementById('ucontact').innerHTML=$("#"+trid+" td:nth-child(13)").text();
+            document.getElementById('udob').value=$("#"+trid+" td:nth-child(14)").text();
+            document.getElementById('uaddress').innerHTML=$("#"+trid+" td:nth-child(11)").text();
+            document.getElementById('ukyc').value=$("#"+trid+" td:nth-child(8)").text();
+            document.getElementById('uadhaar').value=$("#"+trid+" td:nth-child(9)").text();
+            document.getElementById('upan').value=$("#"+trid+" td:nth-child(10)").text();
+            document.getElementById('uscity').value=$("#"+trid+" td:nth-child(7)").text();
+            document.getElementById('uoccupation').value=$("#"+trid+" td:nth-child(15)").text();
+            document.getElementById('udescription').value=$("#"+trid+" td:nth-child(16)").text();
+            document.getElementById('uloan_amount').innerHTML=$("#"+trid+" td:nth-child(3)").text();
+            document.getElementById('uloan_duration').value=$("#"+trid+" td:nth-child(5)").text();
+            document.getElementById('uloan_interest').value=$("#"+trid+" td:nth-child(4)").text();
+            document.getElementById('usanction_date').innerHTML=$("#"+trid+" td:nth-child(17)").text();
+            document.getElementById('uagent_name').innerHTML=$("#"+trid+" td:nth-child(6)").text();
+            document.getElementById('uagent_com').innerHTML=$("#"+trid+" td:nth-child(12)").text();
+            document.getElementById('upending_amount').innerHTML=$("#"+trid+" td:nth-child(18)").text();
+
+
+
             let partyTable= document.querySelector('.partyTable');
             let partyDetails= document.querySelector('.partyDetails');
               if(flag!=trid){
@@ -351,6 +454,63 @@
         });
       });
     });
+  </script>
+  <script>
+    var pageinfo="loan";
+    function updateLoan(){
+        var ulname=document.getElementById('ulname').value;
+        var uscity=document.getElementById('uscity').value;
+        var ukyc=document.getElementById('ukyc').value;
+        var uadhaar=document.getElementById('uadhaar').value;
+        var upan=document.getElementById('upan').value;
+        var uaddress=document.getElementById('uaddress').value;
+        var udob=document.getElementById('udob').value;
+        var uoccupation=document.getElementById('uoccupation').value;
+        var udescription=document.getElementById('udescription').value;
+        var uloan_interest=document.getElementById('uloan_interest').value;
+        var ucontact=document.getElementById('ucontact').innerHTML;
+        $.ajax({
+        method:"POST",
+        url: "include/updateDetails.php",
+        data:{
+          info:pageinfo,
+          name:ulname,
+          city:uscity,
+          kyc:ukyc,
+          adhaar:uadhaar,
+          pan:upan,
+          address:uaddress,
+          dob:udob,
+          occupation:uoccupation,
+          description:udescription,
+          loan_interest:uloan_interest,
+          contact:ucontact
+        },
+        success: function(data){
+          alert(data);
+          if(data=="Record updated successfully"){
+            location.reload();
+          }
+        }});    
+      }
+      function deleteDetails(){
+        var contactnum=$("#"+trid+" td:nth-child(13)").text();
+        $.ajax({
+        method:"POST",
+        url: "include/deleteDetails.php",
+        data:{
+          id:trid,
+          contact:contactnum,
+          info:pageinfo
+        },
+        success: function(data){
+          alert(data);
+          if(data=="Record Deleted successfully"){
+            location.reload();
+          }
+        }});  
+        
+      }
   </script>
   </body>
 </html>

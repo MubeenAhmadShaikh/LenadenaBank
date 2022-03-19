@@ -205,60 +205,6 @@
           </div>
         </main>
 
-        <!-- <main class="content">
-          <div class="container-fluid p-0">
-            <div class="d-flex flex-row justify-content-between">
-
-              <h1 class="h3 mb-3">Party</h1>
-              <div>
-
-                <a class="btn btn-primary" href="add_party.php" role="button"><i class="align-middle" data-feather="plus"></i>Add Party</a>
-              </div>
-            </div>
-		
-            <div class="row">
-						<div class="col-12 col-xl-12">
-							<div class="card">
-								
-								<table class="table">
-									<thead>
-										<tr>
-											<th>Acc. No.</th>
-											<th>Name</th>
-											<th>Balance</th>
-											<th>Agent Id</th>
-											<th>Contact</th>
-											<th >Acc. Opening date</th>
-											<th class="d-none d-md-table-cell" >Date of Birth</th>
-											<th>Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-										
-												
-												<tr>
-													<td>123</td>
-													<td>Abc</td>
-													<td>Male</td>
-                          <td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
-                          <td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
-                          <td ><i class="align-middle text-danger" data-feather="alert-circle"></i></td>
-                          <td >12/2/2021</td>
-															<td class="table-action d-flex justify-content-around">
-																<a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-																<a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
-																
-														</td>
-													
-											
-										</tr>
-										
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-          </div> -->
 		  
 		  <!-- Modal -->
 <div class="modal" id="myModal">
@@ -278,7 +224,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" name="delete" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+        <button type="button" name="delete" class="btn btn-danger" data-bs-dismiss="modal" onclick="deleteDetails()">Delete</button>
         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
       </div>
 
@@ -500,6 +446,7 @@
     });
   </script>
   <script>
+    var pageinfo="party";
     function updateParty(){
         var upname=document.getElementById('upname').value;
         var uscity=document.getElementById('uscity').value;
@@ -515,8 +462,9 @@
         var ucontact=document.getElementById('ucontact').innerHTML;
         $.ajax({
         method:"POST",
-        url: "include/updateParty.php",
+        url: "include/updateDetails.php",
         data:{
+          info:pageinfo,
           name:upname,
           city:uscity,
           kyc:ukyc,
@@ -536,6 +484,24 @@
             location.reload();
           }
         }});    
+      }
+      function deleteDetails(){
+        var contactnum=$("#"+trid+" td:nth-child(11)").text();
+        $.ajax({
+        method:"POST",
+        url: "include/deleteDetails.php",
+        data:{
+          id:trid,
+          contact:contactnum,
+          info:pageinfo
+        },
+        success: function(data){
+          alert(data);
+          if(data=="Record Deleted successfully"){
+            location.reload();
+          }
+        }});  
+        
       }
   </script>
   </body>
