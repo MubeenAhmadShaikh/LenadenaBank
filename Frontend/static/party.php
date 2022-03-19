@@ -300,13 +300,13 @@
       <div class="modal-body">
       <table class="table table-sm  mb-4">
                       <tbody>
-                        <tr>
+                      <tr>
                           <th>Account Number</th>
                           <td id="uaccount_number"></td>
                         </tr>
                         <tr>
                           <th>Name</th>
-                          <td><input type="text" id="upname"></td>
+                          <td><input type="text" class="form-control" id="upname"></td>
                         </tr>
                         <tr>
                           <th>Phone</th>
@@ -314,39 +314,51 @@
                         </tr>
                         <tr>
                           <th>Gender</th>
-                          <td id="ugender"></td>
+                          <td >
+                            <select class="form-select" aria-label="Default select example" name="gender" id="ugender">
+                              <option selected>Select gender</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                            </select>
+                          </td>
                         </tr>
                         <tr>
                           <th>Date Of Birth</th>
-                          <td id="udob"></td>
+                          <td ><input type="date" class="form-control" id="udob"></td>
                         </tr>
                         <tr>
                           <th>Address</th>
-                          <td id="uaddress"></td>
+                          <td ><textarea class="form-control" id="uaddress" rows="3"></textarea></td>
                         </tr>
                         <tr>
                           <th>KYC</th>
-                          <td id="ukyc"></td>
+                          <td >
+                            <select class="form-select" aria-label="Default select example" name="kyc" id="ukyc">
+                              <option selected>Select KYC Status</option>
+                              <option value="1">Yes</option>
+                              <option value="0">No</option>
+                            </select>
+                          </td>
                         </tr>
                         <tr>
                           <th>Adhaar Number</th>
-                          <td id="uadhaar"></td>
+                          <td ><input type="text" class="form-control" id="uadhaar"></td>
                         </tr>
                         <tr>
                           <th>Pan Number</th>
-                          <td id="upan"></td>
+                          <td ><input type="text" class="form-control" id="upan"></td>
                         </tr>
                         <tr>
                           <th>City</th>
-                          <td id="uscity"></td>
+                          <td ><input type="text" class="form-control" id="uscity"></td>
                         </tr>
                         <tr>
                           <th>Occupation</th>
-                          <td id="uoccupation"></td>
+                          <td ><input type="text" class="form-control" id="uoccupation"></td>
                         </tr>
                         <tr>
                           <th>Description</th>
-                          <td id="udescription"></td>
+                          <td ><textarea class="form-control" id="udescription" rows="3"></textarea></td>
                         </tr>
                         <tr>
                           <th>Current Balance</th>
@@ -354,7 +366,7 @@
                         </tr>
                         <tr>
                           <th>Interest</th>
-                          <td id="uparty_interest"></td>
+                          <td ><input type="text" class="form-control" id="uparty_interest"></td>
                         </tr>
                         <tr>
                           <th>Account Opened On</th>
@@ -374,8 +386,33 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" name="delete" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+        <button type="button" name="delete" class="btn btn-success" data-bs-dismiss="confirmModal" data-bs-toggle="modal" data-bs-target="#confirmModal">Update</button>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="confirmModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Confirm</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="editModal" data-bs-toggle="modal" data-bs-target="#editModal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Are you sure you want to update the party details...
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="updateParty()">Update</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="editModal" data-bs-toggle="modal" data-bs-target="#editModal">Cancel</button>
       </div>
 
     </div>
@@ -393,6 +430,7 @@
     <script>
       var bid, trid;
       function dataFetch(){
+        // Documnet populating Side Card
         document.getElementById('account_number').innerHTML=$("#"+trid+" td:nth-child(1)").text();
         document.getElementById('pname').innerHTML=$("#"+trid+" td:nth-child(2)").text();
         document.getElementById('total_balance').innerHTML=$("#"+trid+" td:nth-child(3)").text();
@@ -411,24 +449,24 @@
         document.getElementById('party_interest').innerHTML=$("#"+trid+" td:nth-child(16)").text();
         document.getElementById('gender').innerHTML=$("#"+trid+" td:nth-child(17)").text();
         
-
-        document.getElementById('uaccount_number').innerHTML=$("#"+trid+" td:nth-child(1)").text();
+        //Document populating update modal
+        document.getElementById('uaccount_number').value=$("#"+trid+" td:nth-child(1)").text();
         document.getElementById('upname').value=$("#"+trid+" td:nth-child(2)").text();
         document.getElementById('utotal_balance').innerHTML=$("#"+trid+" td:nth-child(3)").text();
         document.getElementById('uagent_name').innerHTML=$("#"+trid+" td:nth-child(4)").text();
-        document.getElementById('uscity').innerHTML=$("#"+trid+" td:nth-child(5)").text();
-        document.getElementById('ukyc').innerHTML=$("#"+trid+" td:nth-child(6)").text();
-        document.getElementById('uadhaar').innerHTML=$("#"+trid+" td:nth-child(7)").text();
-        document.getElementById('upan').innerHTML=$("#"+trid+" td:nth-child(8)").text();
-        document.getElementById('uaddress').innerHTML=$("#"+trid+" td:nth-child(9)").text();
+        document.getElementById('uscity').value=$("#"+trid+" td:nth-child(5)").text();
+        document.getElementById('ukyc').value=$("#"+trid+" td:nth-child(6)").text();
+        document.getElementById('uadhaar').value=$("#"+trid+" td:nth-child(7)").text();
+        document.getElementById('upan').value=$("#"+trid+" td:nth-child(8)").text();
+        document.getElementById('uaddress').value=$("#"+trid+" td:nth-child(9)").text();
         document.getElementById('uagent_com').innerHTML=$("#"+trid+" td:nth-child(10)").text();
         document.getElementById('ucontact').innerHTML=$("#"+trid+" td:nth-child(11)").text();
-        document.getElementById('udob').innerHTML=$("#"+trid+" td:nth-child(12)").text();
-        document.getElementById('uoccupation').innerHTML=$("#"+trid+" td:nth-child(13)").text();
-        document.getElementById('udescription').innerHTML=$("#"+trid+" td:nth-child(14)").text();
+        document.getElementById('udob').value=$("#"+trid+" td:nth-child(12)").text();
+        document.getElementById('uoccupation').value=$("#"+trid+" td:nth-child(13)").text();
+        document.getElementById('udescription').value=$("#"+trid+" td:nth-child(14)").text();
         document.getElementById('uacc_open_date').innerHTML=$("#"+trid+" td:nth-child(15)").text();
-        document.getElementById('uparty_interest').innerHTML=$("#"+trid+" td:nth-child(16)").text();
-        document.getElementById('ugender').innerHTML=$("#"+trid+" td:nth-child(17)").text();
+        document.getElementById('uparty_interest').value=$("#"+trid+" td:nth-child(16)").text();
+        document.getElementById('ugender').value=$("#"+trid+" td:nth-child(17)").text();
       }
       var flag;
       $(function() {
@@ -450,7 +488,6 @@
                 }
             });
         });
-      
   </script>
   <script>
     $(document).ready(function(){
@@ -461,6 +498,45 @@
         });
       });
     });
+  </script>
+  <script>
+    function updateParty(){
+        var upname=document.getElementById('upname').value;
+        var uscity=document.getElementById('uscity').value;
+        var ukyc=document.getElementById('ukyc').value;
+        var uadhaar=document.getElementById('uadhaar').value;
+        var upan=document.getElementById('upan').value;
+        var uaddress=document.getElementById('uaddress').value;
+        var udob=document.getElementById('udob').value;
+        var uoccupation=document.getElementById('uoccupation').value;
+        var udescription=document.getElementById('udescription').value;
+        var uparty_interest=document.getElementById('uparty_interest').value;
+        var ugender=document.getElementById('ugender').value;
+        var ucontact=document.getElementById('ucontact').innerHTML;
+        $.ajax({
+        method:"POST",
+        url: "include/updateParty.php",
+        data:{
+          name:upname,
+          city:uscity,
+          kyc:ukyc,
+          adhaar:uadhaar,
+          pan:upan,
+          address:uaddress,
+          dob:udob,
+          occupation:uoccupation,
+          description:udescription,
+          party_interest:uparty_interest,
+          gender:ugender,
+          contact:ucontact
+        },
+        success: function(data){
+          alert(data);
+          if(data=="Record updated successfully"){
+            location.reload();
+          }
+        }});    
+      }
   </script>
   </body>
 </html>
