@@ -7,7 +7,7 @@ if ($_SESSION['username']==false) {
 }
 ?>
 <!-- #TODO
-1. Add Date of birth php
+1. Add Date of birth php 
  -->
 <?php 
 if (isset($_POST['add'])) {
