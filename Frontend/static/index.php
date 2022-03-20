@@ -13,7 +13,8 @@
       crossorigin="anonymous"
     />
     <title>LenaDenaBank | Dashboard</title>
-    <link href="css/app.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+    <link href="../STATIC/css/app.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
   </head>
 
@@ -380,7 +381,7 @@
       </div>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="../STATIC/js/app.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
