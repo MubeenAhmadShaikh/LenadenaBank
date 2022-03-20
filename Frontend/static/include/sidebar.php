@@ -3,12 +3,12 @@
   include('include/connection.php');
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
-  	header('location: sign_in.php');
+  	header('location: index.php');
   }
   if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['username']);
-  	header("location: sign_in.php");
+  	header("location: index.php");
   }
 ?>
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
 ?>
 <nav id="sidebar" class="sidebar js-sidebar">
         <div class="sidebar-content js-simplebar">
-          <a class="sidebar-brand" href="index.php">
+          <a class="sidebar-brand" href="home.php">
             <span class="align-middle">LenaDenaBank</span>
           </a>
 
@@ -61,10 +61,10 @@
               </ul>
             </li> -->
            
-            <li class="sidebar-item <?= ($activePage == 'index') ? 'active':''; ?>">
+            <li class="sidebar-item <?= ($activePage == 'home') ? 'active':''; ?>">
               <a
                 class="sidebar-link"
-                href="index.php"
+                href="home.php"
                 data-toggle="collapse"
                 aria-expanded="false"
                 class="dropdown-toggle"
