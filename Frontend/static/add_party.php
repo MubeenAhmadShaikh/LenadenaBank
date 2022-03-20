@@ -139,11 +139,11 @@ if (isset($_POST['add'])) {
                 <form class="m-5" method="post" name='add'>
                   <!-- First row -->
                   <div class="row"> 
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">First Name</label>
                       <input type="text" class="form-control" name="pfirst_name" aria-describedby="emailHelp">
                     </div>
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Last Name</label>
                       <input type="text" class="form-control" name="plast_name"  aria-describedby="emailHelp">
                     </div>
@@ -151,7 +151,7 @@ if (isset($_POST['add'])) {
                   </div>
                   <!-- Second row -->
                   <div class="row"> 
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Gender</label>
                       <select class="form-select" aria-label="Default select example" name="gender">
                         <option selected>Select gender</option>
@@ -159,7 +159,7 @@ if (isset($_POST['add'])) {
                         <option value="Female">Female</option>
                       </select>
                     </div>
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label class="form-label">KYC</label>
                       <select class="form-select" aria-label="Default select example" name="kyc">
                         <option selected>Select KYC Status</option>
@@ -170,33 +170,33 @@ if (isset($_POST['add'])) {
                   </div>
                   <!-- Third row -->
                 <div class="row"> 
-                <div class="w-50 mb-3">
+                <div class="col-md mb-3">
                     <label  class="form-label">Adhaar Number</label>
                     <input type="text" class="form-control" name="adhaar_number" aria-describedby="emailHelp">
                   </div>
-                  <div class="w-50 mb-3">
+                  <div class="col-md mb-3">
                     <label  class="form-label">PAN Number</label>
                     <input type="text" class="form-control" name="pan_number"  aria-describedby="emailHelp">
                   </div>
                 </div>
                 <!-- fourth row -->
                 <div class="row"> 
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Contact number</label>
                       <input type="phone" class="form-control" name="contact"  >
                     </div>
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                         <label  class="form-label">Date of birth</label>
                         <input type="date" class="form-control" name="dob"  >
                     </div>          
                 </div>
                   <!-- Fifth row -->
                 <div class="row"> 
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Address</label>
                       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="paddress"></textarea>
                     </div>
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                         <label  class="form-label">City</label>
                         <input type="decimal" class="form-control" name="city" >
                     </div>
@@ -204,11 +204,11 @@ if (isset($_POST['add'])) {
                   </div>
                   <!-- sixth row -->
                   <div class="row"> 
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                         <label  class="form-label">Occupation</label>
                         <input type="phone" class="form-control" name="occupation"  >
                     </div>
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Description</label>
                       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
                      
@@ -218,11 +218,11 @@ if (isset($_POST['add'])) {
                   <!-- seventh row -->
                 
                 <div class="row"> 
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Balance</label>
                       <input type="text" class="form-control" name="balance" aria-describedby="emailHelp">
                     </div>
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Intrest amount</label>
                       <input type="decimal" class="form-control" name="rate_of_intrest"  aria-describedby="emailHelp">
                     </div>
@@ -230,9 +230,9 @@ if (isset($_POST['add'])) {
                   </div>
                 <!-- eighth row -->
                 <div class="row"> 
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Agent id</label>
-                      <select class="form-select" aria-label="Default select example" name="agentId" id="agentId">
+                      <select class="form-select col-md" aria-label="Default select example" name="agentId" id="agentId">
                         <option selected>Select Agents </option>
                         <option name = 'none'>Select This If No Agent Is Req</option>
 
@@ -254,7 +254,7 @@ if (isset($_POST['add'])) {
                     }?>
                       </select>
                     </div>
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Agent commission</label>
                       <input type="decimal" class="form-control" name="agent_commission"  >
                     </div>          

@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <title>LenaDenaBank | Dashboard</title>
-    <link href="../STATIC/css/app.css" rel="stylesheet" />
+    <link href="../css/app.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
-</head>
+   
+  </head>
 <body>
     <nav class="navbar navbar-expand navbar-light navbar-bg">
           <a class="sidebar-toggle js-sidebar-toggle">
@@ -104,6 +105,6 @@
             </ul>
           </div>
         </nav>
-        <script src="../STATIC/js/app.js"></script>
+        <script src="../js/app.js"></script>
 </body>
 </html>

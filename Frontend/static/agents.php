@@ -11,25 +11,15 @@ if ($_SESSION['username']==false) {
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="author" content="LenaDenaBank" />
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-
-    <link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
-
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
     <title>LenaDenaBank | Agents</title>
-	<!-- CDN till demo -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- CDN till demo -->
     <link href="css/app.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
-	<script src="js/jquery.min.js"> </script> 
+	
   </head>
 
   <body>
@@ -41,14 +31,20 @@ if ($_SESSION['username']==false) {
 
         <main class="content">
           <div class="container-fluid p-0">
-            <div class="d-flex flex-row justify-content-between">
+		  <div class="d-flex flex-row justify-content-between">
 
-              <h1 class="h3 mb-3">Agents</h1>
-              <div>
-			  <input id="myInput" type="text" placeholder="Search..">
-                <a class="btn btn-primary" href="add_agent.php" role="button"><i class="align-middle" data-feather="plus"></i>Add Agent</a>
-              </div>
-            </div>
+			<h1 class="h3 mb-3">Agents</h1>
+
+			<div class="card-actions float-end">
+					<div class="dropdown position-relative">
+					<div class="input-group input-group-navbar">
+					<input id="myInput" type="text" class="form-control me-4" placeholder="Search…" aria-label="Search">
+									<a class="btn btn-primary " href="add_agent.php" role="button"><i class="align-middle" data-feather="plus"></i>Add Agents</a>
+								</div>
+					
+					</div>
+					</div>  
+			</div>
 			
             <div class="row">
 						<div class="col-12 col-xl-12">

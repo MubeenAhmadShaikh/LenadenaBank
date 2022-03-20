@@ -121,11 +121,11 @@ if (isset($_POST['add'])) {
                 <form class="m-5" method="post" name='add'>
                   <!-- First row -->
                   <div class="row"> 
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">First Name</label>
                       <input type="text" class="form-control" name="afirst_name" aria-describedby="emailHelp">
                     </div>
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Last Name</label>
                       <input type="text" class="form-control" name="alast_name"  aria-describedby="emailHelp">
                     </div>
@@ -133,7 +133,7 @@ if (isset($_POST['add'])) {
                   </div>
                   <!-- Second row -->
                   <div class="row"> 
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label  class="form-label">Gender</label>
                       <select class="form-select" aria-label="Default select example" name="gender">
                         <option selected>Select gender</option>
@@ -141,7 +141,7 @@ if (isset($_POST['add'])) {
                         <option value="Female">Female</option>
                       </select>
                     </div>
-                    <div class="w-50 mb-3">
+                    <div class="col-md mb-3">
                       <label class="form-label">KYC</label>
                       <select class="form-select" aria-label="Default select example" name="kyc">
                         <option selected>Select KYC Status</option>
@@ -152,22 +152,22 @@ if (isset($_POST['add'])) {
                   </div>
                   <!-- Third row -->
                 <div class="row"> 
-                <div class="w-50 mb-3">
+                <div class="col-md mb-3">
                     <label  class="form-label">Adhaar Number</label>
                     <input type="text" class="form-control" name="adhaar_number" aria-describedby="emailHelp">
                   </div>
-                  <div class="w-50 mb-3">
+                  <div class="col-md mb-3">
                     <label  class="form-label">PAN Number</label>
                     <input type="text" class="form-control" name="pan_number"  aria-describedby="emailHelp">
                   </div>
                 </div>
                   <!-- fourth row -->
                 <div class="row"> 
-                <div class="w-50 mb-3">
+                <div class="col-md mb-3">
                     <label  class="form-label">Date of birth</label>
                     <input type="date" class="form-control" name="dob" >
                 </div>
-                <div class="w-50 mb-3">
+                <div class="col-md mb-3">
                       <label  class="form-label">Contact number</label>
                       <input type="phone" class="form-control" name="contact"  >
                     </div>

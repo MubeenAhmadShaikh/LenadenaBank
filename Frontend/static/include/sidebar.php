@@ -19,9 +19,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <title>LenaDenaBank | Dashboard</title>
-    <link href="../STATIC/css/app.css" rel="stylesheet" />
+    <link href="../css/app.css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
-    
+    <link href="css/select2.min.css" rel="stylesheet" type="text/css" /> 
+    <script src="js/jquery.min.js"></script> 
+    <script src="js/select2.min.js"></script>
 </head>
 <body>
 <?php 
@@ -95,17 +98,19 @@
                 <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Transactions</span>
               </a>
             </li>
-            <li class="sidebar-item <?= ($activePage == 'reports') ? 'active':''; ?>">
-            <a href="#reports" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-            <i class="align-middle" data-feather="map"></i> <span class="align-middle">Reports</span>
-			</a>
-            <ul id="reports" class="sidebar-dropdown list-styled collapse" data-bs-parent="#sidebar" style="">
-							<li class="sidebar-item <?= ($activePage == 'reports_loans') ? 'active':''; ?>"><a class="sidebar-link" href="reports_loans.php"><i class="align-middle" data-feather="dollar-sign"></i>Loans</a></li>
+            
+            <li class="sidebar-item <?= (substr($activePage,0,7) == 'reports') ? 'active':''; ?>">
+						<a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout align-middle"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> <span class="align-middle">Reports</span>
+						</a>
+						<ul id="pages" class="sidebar-dropdown list-unstyled ps-3 collapse <?= ($activePage == 'reports_loans')||($activePage == 'reports_agents')||($activePage == 'reports_party') ? 'show':''; ?>" data-bs-parent="#sidebar">
+            <li class="sidebar-item <?= ($activePage == 'reports_loans') ? 'active':''; ?>"><a class="sidebar-link" href="reports_loans.php"><i class="align-middle" data-feather="dollar-sign"></i>Loans</a></li>
 							<li class="sidebar-item <?= ($activePage == 'reports_agents') ? 'active':''; ?>"><a class="sidebar-link" href="reports_agents.php"><i class="align-middle" data-feather="users"></i>Agents</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="reports_party.php"><i class="align-middle" data-feather="user"></i>Party </a></li>
+							<li class="sidebar-item <?= ($activePage == 'reports_party') ? 'active':''; ?>"><a class="sidebar-link" href="reports_party.php"><i class="align-middle" data-feather="user"></i>Party </a></li>
+							
+						
 						</ul>
-            </li>
-
+					</li>
 
 
             <li class="sidebar-item">
@@ -117,6 +122,6 @@
           </ul>
         </div>
       </nav>
-      <script src="../STATIC/js/app.js"></script>
+      <script src="../js/app.js"></script>
 </body>
 </html>

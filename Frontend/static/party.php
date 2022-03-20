@@ -9,23 +9,17 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="author" content="LenaDenaBank" />
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
     <title>LenaDenaBank | Party</title>
-    <!-- CDN till demo -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- CDN till demo -->
     <link href="css/app.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
-    <script src="js/jquery.min.js"></script> 
+    
   </head>
+  <!-- <script src="js/jquery.min.js"></script>  -->
 
   <body>
     <div class="wrapper">
@@ -36,23 +30,25 @@
 
         <main class="content">
           <div class="container-fluid p-0">
+          <div class="d-flex flex-row justify-content-between">
+
+            <h1 class="h3 mb-3">Party</h1>
+
+            <div class="card-actions float-end">
+                <div class="dropdown position-relative">
+                <div class="input-group input-group-navbar">
+                <input id="myInput" type="text" class="form-control me-4" placeholder="Search…" aria-label="Search">
+                        <a class="btn btn-primary " href="add_party.php" role="button"><i class="align-middle" data-feather="plus"></i>Add Party</a>
+                      </div>
+                
+                </div>
+                </div>  
+            </div>
             <div class="row">
               <div class="col-xl-12 partyTable">
                 <div class="card">
                   <div class="card-header pb-0">
-                    <div class="card-actions float-end">
-                      <div class="dropdown position-relative">
-                      <input id="myInput" type="text" placeholder="Search..">
-                      <a class="btn btn-primary" href="add_party.php" role="button"><i class="align-middle" data-feather="plus"></i>Add Party</a>
-
-                        <div class="dropdown-menu dropdown-menu-end">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </div>
-                    </div>
-                    <h5 class="card-title mb-0">Party</h5>
+                    
                   </div>
                   <div class="card-body">
                     <table class="table table-striped" style="width: 100%" id="test">
